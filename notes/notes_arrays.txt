@@ -1,0 +1,51 @@
+method isimleri??:
+| #  | Görev                                      | Method                     |
+| -- | ------------------------------------------ | -------------------------- |
+| 1  | 3. üyeyi sil                               | `removeAt()`               |
+| 2  | Yaşa göre büyükten küçüğe sırala           | `sortByAge()`              |
+| 3  | İsme göre Z-A sırala                       | `sortByNameDesc()`         |
+| 4  | 24 yaşından büyükleri filtrele             | `filterByAge()`            |
+| 5  | iOS geliştirici sayısını bul               | `countByTitle()`           |
+| 6  | İndeksini bul                              | `findIndex()`              |
+| 8  | Belirli `memberLevel` üyelerini sil        | `deleteByMemberLevel()`    |
+| 9  | En yaşlı üyeyi bul                         | `findOldestMember()`       |
+| 10 | En uzun ismi bul                           | `findLongestName()`        |
+| 11 | Aynı burçtakileri grupla                   | `findByHoroscope()`        |
+| 12 | En yaygın memleketi bul                    | `findMostCommonHometown()` |
+| 13 | Ortalama yaşı bul                          | `averageAge()`             |
+
+
+7/Akademinin bir mentörü olan ve deneyim seviyesini gösteren "mentorLevel" adlı özel 
+bir özelliğe sahip yeni bir üyeyi diziye ekleyin. Yeni üyeyi ekledikten sonra tüm üyelerin tam adlarını yazdırın.
+
+14/Üyelerin iletişim bilgilerini içeren yeni bir dizi oluşturun
+ve bu yeni dizideki tüm üyelerin e-posta adreslerini yazdırın.
+
+15/Üyeleri üyelik seviyelerine göre (en yüksekten en düşüğe) desc?
+sıralayın ve tam adlarını yazdırın.
+
+16/Aynı unvana sahip tüm üyeleri bulun ve iletişim bilgilerinden
+oluşan yeni bir dizi oluşturun, ardından bu yeni dizideki tüm üyelerin telefon numaralarını yazdırın.
+
+✅ printMembers()
+
+INT de/
+members.sort((a, b) => a.age - b.age);
+küçükten büyüğe negatif çıktığında a önce gelir
+
+members.sort((a, b) => b.age - a.age);
+pozitif çıktığında b önce gelir
+
+STRING de/
+members.sort((a, b) => a.fullName.compareTo(b.fullName)); 
+A-Z
+
+members.sort((a, b) => b.fullName.compareTo(a.fullName));
+Z-A
+
+final maxValue = numbers.reduce(max); //maximum bulamk için
+
+final List<List<dynamic>> hometownArray = [];
+dynamic, Dart'ta bir değişkenin tipinin belirli olmamasına izin verir. 
+
+String? `null olabilir demek.
