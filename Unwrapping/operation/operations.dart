@@ -47,7 +47,7 @@ class Operations {
 
   /*
   Create a function that takes a member 
-  and returns the member's motivation level if it is not nil,
+  and returns the member's motivation level if it is not nulll,
   otherwise it returns 0.
   */
   int getMotivationLevel(NeonAcademyMember member) {
