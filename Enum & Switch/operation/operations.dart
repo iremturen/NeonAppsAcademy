@@ -53,7 +53,8 @@ class Operations {
   void getTeamMembers(List<NeonAcademyMember> members, Team team) {
     final teamMembers = <NeonAcademyMember>[];
     for (var i = 0; i < members.length; i++) {
-      if (members[i].team == team) teamMembers.add(members[i]);
+      if (members[i].team == team) 
+        teamMembers.add(members[i]);
     }
     printMembersName(teamMembers);
   }
@@ -81,13 +82,10 @@ class Operations {
     and prints out the full names of all members
     that are older than that age and belong to a specific team.
   */
-  void getMembersByAgeAndTeam(
-    List<NeonAcademyMember> members,
-    int age,
-    Team team,
-  ) {
+  void getMembersByAgeAndTeam(List<NeonAcademyMember> members, int age, Team team) {
     for (var member in members) {
-      if (member.age > age && member.team == team) print(member.fullName);
+      if (member.age > age && member.team == team) 
+        print(member.fullName);
     }
   }
 
@@ -155,13 +153,11 @@ class Operations {
   Create a function that takes a team as an input
   and returns an array of the contact information of all members in that team.
   */
-  List<ContactInformation> getContactInformationByTeam(
-    List<NeonAcademyMember> members,
-    Team team,
-  ) {
+  List<ContactInformation> getContactInformationByTeam(List<NeonAcademyMember> members, Team team) {
     final contact = <ContactInformation>[];
     for (var member in members) {
-      if (member.team == team) contact.add(member.contactInformation);
+      if (member.team == team) 
+        contact.add(member.contactInformation);
     }
     return contact;
   }
@@ -197,9 +193,7 @@ class Operations {
 
       case Team.androidDevelopment:
         if (member.age > 25) {
-          print(
-            "${member.fullName} member is an experienced Android developer.",
-          );
+          print("${member.fullName} member is an experienced Android developer.");
         } else {
           print("${member.fullName} member is a promising Android developer.");
         }
