@@ -1,0 +1,33 @@
+Unwrapping, nullable bir değerin null olmadığını garanti ederek 
+normal değer gibi kullanılmasını ifade eder. Dart'ta ! operatörü bunun için kullanılır.
+
+Dart'ta unwrapping, nullable bir değeri (T?) null olmayan normal bir değere (T)
+çevirmek / kullanmak anlamında kullanılır.
+
+! = null safety açısından unwrapping
+
+Neden int??
+Çünkü member'ın henüz motivation level'ı belirlenmemiş olabilir.
+
+member.motivationLevel = member.motivationLevel! + number;
+arttırma değil update işlemi
+o değeri değiştirmeye yönelik bir assignment/update işlemi.
+
+guard let Swift'e ait bir yapı. Dart'ta birebir guard let yok.
+Mantığı şu:
+“Bu değer null ise burada çık. Null değilse devam et.”
+guard let = “null'sa çık, değilse devam et.”
+Dart'ta = null kontrolü + return (early return).
+
+(You should use nil coalescing for this task) == ??
+---------
+if (member.motivationLevel == null)
+  return 0;
+final motivationLevel = member.motivationLevel!;
+return motivationLevel;
+----------
+
+?? → “null ise alternatif değeri kullan”
+
+if let = if else
+
