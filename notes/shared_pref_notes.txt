@@ -1,0 +1,78 @@
+SharedPreferences nedir?
+SharedPreferences, Flutter uygulamasında küçük miktardaki verileri
+cihazda kalıcı olarak saklamak için kullanılan basit bir local storage yöntemidir.
+
+Nasıl çalışıyor?
+SharedPreferences'ı basitçe bir key-value storage gibi düşünebilirsin.
+
+Flutter'da SharedPreferences
+Flutter'da bunun için genellikle:
+
+shared_preferences paketi kullanılır.
+
+Paket bize kabaca şu işlemleri sağlar:
+setString()
+setInt()
+setBool()
+veri kaydetmek için.
+
+Okumak için de:
+getString()
+getInt()
+getBool()
+kullanırız.
+
+SharedPreferences doğrudan bu class'ı kaydetmez.
+SharedPreferences yalnızca String, int, double, bool
+ve List<String> gibi basit tipleri saklar.
+
+pubspec.yaml, Dart ve Flutter projelerinin proje ayar dosyasıdır.
+name: Projenin adı
+description: Proje açıklaması
+environment: Kullanılacak Dart SDK sürümü
+dependencies: Uygulamanın kullandığı paketler
+dev_dependencies: Test ve geliştirme paketleri
+
+lib klasörü, projenin ana Dart kaynak kodlarını tutar.
+
+Future
+Bir işlemin sonucunun hemen değil, ileride geleceğini ifade eder.
+
+Future<String>
+→ “İleride bir String gelecek.”
+Future<void>
+→ “İşlem ileride tamamlanacak ama bir değer döndürmeyecek.”
+
+async
+Bir methodun içinde asenkron işlemler yapacağımızı belirtir.
+Future<void> saveString() async {
+}
+→ saveString asenkron çalışan bir method.
+
+await
+Bir Future işleminin sonucunu beklemek için kullanılır.
+final prefs = await SharedPreferences.getInstance();
+→ “SharedPreferences hazır olana kadar bekle, sonra sonucu prefs içine koy.”
+
+Üçünü birlikte düşün
+Future<void> saveString() async {
+  final prefs = await SharedPreferences.getInstance();
+}
+
+Burada:
+Future<void> → Bu işlem ileride tamamlanacak, değer döndürmeyecek.
+async → Method asenkron çalışıyor.
+await → SharedPreferences'ın hazır olmasını bekliyoruz.
+
+Ezberlik mantık:
+Future = Sonuç daha sonra gelecek.
+async = Bu method asenkron çalışacak.
+await = Sonucu gelene kadar bekle.
+
+getInstance() burada SharedPreferences'ı kullanabilmek için
+onun hazır olan örneğini (instance) almak için kullanılıyor.
+
+SharedPreferences → bizim yerel depolama sistemimiz.
+getInstance() → "Bana kullanabileceğim SharedPreferences nesnesini ver."
+await → bu nesnenin hazırlanmasını bekle.
+prefs → artık elimizde kullanabileceğimiz SharedPreferences nesnesi var.

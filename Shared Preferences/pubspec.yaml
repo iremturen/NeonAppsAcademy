@@ -1,0 +1,13 @@
+name: dream_destinations
+description: Saving and Retrieving Dream Destinations
+
+environment:
+  sdk: ^3.0.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  shared_preferences: ^2.2.0
+
+dev_dependencies:
+  test: ^1.24.0
