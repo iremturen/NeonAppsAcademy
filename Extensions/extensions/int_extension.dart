@@ -1,9 +1,10 @@
 extension IntExtension on int {
+  // Checks whether the number is a prime number.
   bool isPrime() {
     int i = 3;
 
-    if (this < 2) 
-      return false;
+    if (this < 2)
+     return false;
     if (this == 2) 
       return true;
     if (this % 2 == 0) 

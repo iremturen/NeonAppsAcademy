@@ -1,4 +1,5 @@
 extension MapExtension on Map<String, String> {
+  // Counts how many members have each surname.
   Map<String, int> countMembersBySurname() {
     final memberCountBySurname = <String, int>{};
 
@@ -9,4 +10,3 @@ extension MapExtension on Map<String, String> {
     return memberCountBySurname;
   }
 }
-
