@@ -1,0 +1,31 @@
+extension ExtensionName on ClassName {
+}
+
+“Extension, mevcut bir class'ın source kodunu değiştirmeden
+o class'a yeni method, getter veya setter eklememizi sağlayan bir yapıdır.”
+Extension yeni bir class oluşturmaz ve mevcut class'ı gerçekten değiştirmez.
+Sadece o type üzerinde yeni davranışları kullanmamızı sağlar.
+
+on String
+“Bu extension String üzerinde kullanılabilir.”
+
+Dart DateTime Kısa Not
+DateTime.now()
+→ Şu anki tarih ve saat.
+
+DateTime(2026, 9, 11)
+→ Belirli tarih oluşturur.
+Sıra: yıl, ay, gün
+
+date2.difference(date1)
+→ İki tarih arasındaki farkı verir.
+→ Sonuç Duration tipindedir.
+
+date2.difference(date1).inDays
+→ Farkı gün olarak verir.
+
+Dynamic, Dart’ta değişkenin türünün önceden belli olmaması demektir.
+Her türden değer alabilir:
+dynamic value = "Hello";
+value = 42;
+value = true;
