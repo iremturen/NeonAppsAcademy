@@ -47,7 +47,6 @@ class _MyAppState extends State<MyApp> {
       home: Scaffold(
         backgroundColor: Colors.black,
 
-        // Eski AppBar düzenin aynen korundu
         appBar: selectedImage == null
             ? AppBar(
                 backgroundColor: Colors.black,
@@ -110,14 +109,12 @@ class _MyAppState extends State<MyApp> {
                 height: double.infinity,
                 child: Stack(
                   children: [
-                    // Resim kırpılmadan ve boyutu bozulmadan ortalanır
                     Center(
                       child: Image.asset(
                         selectedImage!,
                         fit: BoxFit.contain,
                       ),
                     ),
-                    // Sol üstteki geri butonu (Çentiğe girmemesi için safe area ve margin ile ayarlandı)
                     SafeArea(
                       child: Padding(
                         padding: const EdgeInsets.only(left: 16, top: 16),

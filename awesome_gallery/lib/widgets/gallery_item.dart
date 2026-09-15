@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class GalleryItem extends StatelessWidget {
   final String imagePath;
   final Function(String)
-  onTap; //onTap diye dışarıdan bana bir fonksiyon verilecek ve bu fonksiyon String alacak.
+  onTap; 
 
   const GalleryItem({super.key, required this.imagePath, required this.onTap});
 
@@ -20,7 +20,6 @@ class GalleryItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
       ),
       child: GestureDetector(
-        //kullanıcının yaptığı dokunma hareketlerini algılayan widget.
         onTap: () {
           onTap(imagePath);
         },
