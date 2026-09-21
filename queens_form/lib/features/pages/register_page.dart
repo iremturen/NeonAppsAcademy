@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../core/constants/colors.dart';
 import '../widgets/form_button.dart';
-import 'package:queens_form/features/presentation/widgets/form_text_field.dart';
+import 'package:queens_form/features/widgets/form_text_field.dart';
 import 'challenge_form_page.dart';
 
 class RegisterPage extends StatefulWidget {

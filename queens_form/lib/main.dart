@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'features/presentation/pages/register_page.dart';
+import 'features/pages/register_page.dart';
 
 void main() {
   runApp(const MyApp());
