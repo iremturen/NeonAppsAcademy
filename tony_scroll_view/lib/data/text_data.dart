@@ -1,4 +1,5 @@
 import 'package:tony_scroll_view/common/constants/colors.dart';
+import 'package:tony_scroll_view/common/constants/dimensions.dart';
 
 import '../presentation/model/text_model.dart';
 
@@ -17,7 +18,7 @@ final List<TextModel> textModels = textData
     .map(
       (text) => TextModel(
         text: text,
-        fontSize: 24,
+        fontSize: textFontSize,
         color: white,
       ),
     )

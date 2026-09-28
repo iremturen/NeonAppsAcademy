@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tony_scroll_view/common/constants/dimensions.dart';
 import 'package:tony_scroll_view/presentation/model/custom_container_model.dart';
 
 class CustomContainer extends StatelessWidget {
@@ -29,8 +30,8 @@ class CustomContainer extends StatelessWidget {
           if (model.imagePath != null) ...[
             Image.asset(
               model.imagePath!,
-              width: 120,
-              height: 120,
+              width: iconSize,
+              height: iconSize,
               fit: BoxFit.contain,
             ),
             const SizedBox(width: 24),

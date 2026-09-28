@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tony_scroll_view/common/constants/colors.dart';
+import 'package:tony_scroll_view/common/constants/dimensions.dart';
 import 'package:tony_scroll_view/presentation/widgets/custom_scroll_view.dart';
 
 import '../widgets/custom_text.dart';
@@ -25,7 +26,7 @@ class ScrollViewPage extends StatelessWidget {
               CustomText(
                 model: TextModel(
                   text: "STARK'S INVENTIONS",
-                  fontSize: 24,
+                  fontSize: textFontSize,
                   fontWeight: FontWeight.bold,
                   color: gold,
                 ),

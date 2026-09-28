@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tony_scroll_view/common/constants/colors.dart';
+import 'package:tony_scroll_view/common/constants/dimensions.dart';
 import 'package:tony_scroll_view/data/text_data.dart';
 import 'package:tony_scroll_view/presentation/model/custom_container_model.dart';
 import 'package:tony_scroll_view/presentation/model/text_model.dart';
@@ -50,7 +51,7 @@ class _CustomScrollViewWidgetState extends State<CustomScrollViewWidget> {
     return LayoutBuilder(
       builder: (context, constraints) {
         const itemVerticalMargin = 20.0;
-        final itemHeight = constraints.maxHeight / 4 - itemVerticalMargin;
+        final itemHeight = constraints.maxHeight / visibleItemCount - itemVerticalMargin;
 
         return SingleChildScrollView(
           controller: _scrollController,

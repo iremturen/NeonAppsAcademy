@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tony_scroll_view/common/constants/colors.dart';
+import 'package:tony_scroll_view/common/constants/dimensions.dart';
 import 'package:tony_scroll_view/presentation/model/text_model.dart';
 
 import 'custom_text.dart';
@@ -14,7 +15,7 @@ class EndScrollAlert {
           content: CustomText(
             model: TextModel(
               text: 'You have reached the end of the scroll view.',
-              fontSize: 20,
+              fontSize: alertMsgFontSize,
               color: white,
             ),
           ),
