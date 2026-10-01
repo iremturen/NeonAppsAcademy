@@ -14,13 +14,8 @@ class CustomCircularProgressIndicator extends StatelessWidget {
 
   Color getColor() {
     final colors = [
-      softYellow,
-      softOrange,
-      softRed,
-      softGreen,
-      softBlue,
-      softPurple,
-      softPink,
+      black,
+      yellow,
     ];
 
     return colors[(counter ~/ 10) % colors.length];
@@ -39,8 +34,10 @@ class CustomCircularProgressIndicator extends StatelessWidget {
         padding: const EdgeInsets.all(12),
         child: CircularProgressIndicator(
           value: counter / topCount,
-          strokeWidth: 12,
+          strokeWidth: 24,
           color: getColor(),
+          trackGap: 1,
+          backgroundColor: cream2,
         ),
       ),
     );

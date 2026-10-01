@@ -1,23 +1,8 @@
 import 'package:bee_counter/common/constants/dimensions.dart';
-import 'package:bee_counter/common/constants/colors.dart';
-import 'package:flutter/material.dart';
 
 class CounterHelper {
   static const Duration duration = Duration(milliseconds: 100);
-
-  static Color getCounterColor(int counter) {
-    const colors = [
-      softYellow,
-      softOrange,
-      softRed,
-      softGreen,
-      softBlue,
-      softPurple,
-      softPink,
-    ];
-
-    return colors[(counter ~/ 10) % colors.length];
-  }
+  static const Duration completeDelay = Duration(seconds: 1);
 
   static Future<void> startCounter({
     required Function(int) onCount,
@@ -28,7 +13,7 @@ class CounterHelper {
 
       onCount(i);
     }
-
+    await Future.delayed(completeDelay);
     onComplete();
   }
 }

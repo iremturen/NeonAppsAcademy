@@ -20,10 +20,10 @@ class CustomButton extends StatelessWidget {
           backgroundColor: model.backgroundColor,
           foregroundColor: model.foregroundColor,
           disabledBackgroundColor: model.backgroundColor.withValues(
-            alpha: 0.55,
+            alpha:  disabledOpacity,
           ),
           disabledForegroundColor: model.foregroundColor.withValues(
-            alpha: 0.55,
+            alpha: disabledOpacity,
           ),
           elevation: model.elevation,
           shadowColor: model.shadowColor,

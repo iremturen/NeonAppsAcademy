@@ -60,8 +60,9 @@ class _BeeCounterViewState extends State<BeeCounterView> {
           ),
         ),
         child: SafeArea(
-          child: Column(
-            children: [
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
               const SizedBox(height: 20),
 
               CustomText(
@@ -105,10 +106,10 @@ class _BeeCounterViewState extends State<BeeCounterView> {
               if (isCounting)
                 CustomContainer(
                   model: CustomContainerModel(
-                    width: indicatorWidth,
-                    height: indicatorHeight,
-                    color: cream2,
-                    borderRadius: BorderRadius.circular(28),
+                    width: counterCardWidth,
+                    height: counterCardHeight,
+                    color: cream,
+                    borderRadius: BorderRadius.circular(24),
                     padding: const EdgeInsets.symmetric(vertical: 18),
                   ),
                   child: Column(
@@ -130,23 +131,13 @@ class _BeeCounterViewState extends State<BeeCounterView> {
                       ),
                       Column(
                         children: [
+                          const SizedBox(height: 16),
                           CustomText(
                             model: CustomTextModel(
-                              text: 'BEES COUNTED',
+                              text: 'Amazing work!',
                               fontSize: subtitleFontSize,
                               fontWeight: FontWeight.bold,
                               color: black,
-                            ),
-                          ),
-                          const SizedBox(height: 4),
-                          CustomText(
-                            model: CustomTextModel(
-                              text: counter == topCount.toInt()
-                                  ? 'Amazing work!'
-                                  : 'Keep going, you are doing great!',
-                              fontSize: 13,
-                              fontWeight: FontWeight.normal,
-                              color: black.withValues(alpha: 0.65),
                             ),
                           ),
                         ],
@@ -155,7 +146,7 @@ class _BeeCounterViewState extends State<BeeCounterView> {
                   ),
                 ),
 
-              const SizedBox(height: 32),
+              const SizedBox(height: 20),
 
               CustomButton(
                 model: CustomButtonModel(
@@ -165,11 +156,12 @@ class _BeeCounterViewState extends State<BeeCounterView> {
                   width: buttonWidth,
                   height: buttonHeight,
                   elevation: buttonWidth,
-                  shadowColor: black.withValues(alpha: 0.3),
+                  shadowColor: black.withValues(alpha: disabledOpacity),
                   borderRadius: borderRadius,
                 ),
               ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
