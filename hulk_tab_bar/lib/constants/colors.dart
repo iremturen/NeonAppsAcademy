@@ -6,5 +6,5 @@ const Color white = Color(0xFFFFFFFF);
 const Color grey = Color(0xFF9a9b9d);
 const Color neonGreen = Color(0xFF46e353);
 const Color darkGreen2 = Color.fromARGB(255, 8, 12, 8);
-
+const Color green = Color.fromRGBO(70, 227, 83, 0.45);
 
