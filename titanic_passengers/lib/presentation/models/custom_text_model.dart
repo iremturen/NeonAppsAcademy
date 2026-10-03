@@ -12,6 +12,6 @@ class TextModel {
     this.fontSize = 16,
     this.fontWeight = FontWeight.normal,
     this.color = Colors.black,
-    this.textAlign = TextAlign.left,
+    this.textAlign = TextAlign.center,
   });
 }

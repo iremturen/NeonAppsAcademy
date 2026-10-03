@@ -64,20 +64,7 @@ class PassengersView extends StatelessWidget {
                         title: 'FLUTTER TEAM',
                         imagePath: 'assets/icons/flutter_icon.png',
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => TeamPassengersView(
-                                title: 'FLUTTER',
-                                passengers: passengers
-                                    .where(
-                                      (passenger) =>
-                                          passenger.team == Team.flutter,
-                                    )
-                                    .toList(),
-                              ),
-                            ),
-                          );
+                          _openTeam(context, 'FLUTTER', Team.flutter);
                         },
                       ),
 
@@ -86,19 +73,7 @@ class PassengersView extends StatelessWidget {
                         title: 'iOS TEAM',
                         imagePath: 'assets/icons/apple_icon.png',
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => TeamPassengersView(
-                                title: 'iOS',
-                                passengers: passengers
-                                    .where(
-                                      (passenger) => passenger.team == Team.ios,
-                                    )
-                                    .toList(),
-                              ),
-                            ),
-                          );
+                          _openTeam(context, 'iOS', Team.ios);
                         },
                       ),
 
@@ -107,20 +82,7 @@ class PassengersView extends StatelessWidget {
                         title: 'ANDROID TEAM',
                         imagePath: 'assets/icons/android_icon.png',
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => TeamPassengersView(
-                                title: 'ANDROID',
-                                passengers: passengers
-                                    .where(
-                                      (passenger) =>
-                                          passenger.team == Team.android,
-                                    )
-                                    .toList(),
-                              ),
-                            ),
-                          );
+                          _openTeam(context, 'ANDROID', Team.android);
                         },
                       ),
 
@@ -129,20 +91,7 @@ class PassengersView extends StatelessWidget {
                         title: 'DESIGN TEAM',
                         imagePath: 'assets/icons/palette_icon.png',
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => TeamPassengersView(
-                                title: 'DESIGN',
-                                passengers: passengers
-                                    .where(
-                                      (passenger) =>
-                                          passenger.team == Team.design,
-                                    )
-                                    .toList(),
-                              ),
-                            ),
-                          );
+                          _openTeam(context, 'DESIGN', Team.design);
                         },
                       ),
                     ],
@@ -155,4 +104,18 @@ class PassengersView extends StatelessWidget {
       ),
     );
   }
+}
+
+void _openTeam(BuildContext context, String title, Team team) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => TeamPassengersView(
+        title: title,
+        passengers: passengers
+            .where((passenger) => passenger.team == team)
+            .toList(),
+      ),
+    ),
+  );
 }
