@@ -43,7 +43,7 @@ class PassengersView extends StatelessWidget {
 
                 CustomText(
                   model: TextModel(
-                    text: 'NEON ACADEMY PASSENGERS',
+                    text: 'NEON APPS PASSENGERS',
                     fontSize: subtitleFontSize,
                     color: darkBlue,
                     textAlign: TextAlign.center,
