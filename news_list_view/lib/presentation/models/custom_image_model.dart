@@ -5,11 +5,13 @@ class CustomImageModel {
   final double? width;
   final double? height;
   final BoxFit fit;
+  final BorderRadius? borderRadius;
 
   const CustomImageModel({
     required this.imagePath,
     this.width,
     this.height,
     this.fit = BoxFit.contain,
+    this.borderRadius,
   });
 }

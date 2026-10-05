@@ -22,6 +22,9 @@ class CustomImage extends StatelessWidget {
             fit: model.fit,
           );
 
-    return image;
+    return ClipRRect(
+      borderRadius: model.borderRadius ?? BorderRadius.zero,
+      child: image,
+    );
   }
 }

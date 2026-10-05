@@ -17,7 +17,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: navy,
       toolbarHeight: appBarHeight,
-      titleSpacing: 0,
       title: Row(
         mainAxisSize: MainAxisSize.min,
         spacing: rowSpacing,
@@ -31,7 +30,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
           CustomText(
             model: CustomTextModel(
-              text: 'Flutter Daily',
+              text: 'Daily News',
               fontSize: titleFontSize,
               color: white,
             ),

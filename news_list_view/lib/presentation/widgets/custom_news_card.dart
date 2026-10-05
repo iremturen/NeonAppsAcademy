@@ -47,6 +47,7 @@ class NewsCard extends StatelessWidget {
               width: newsImageWidth,
               height: newsImageHeight,
               fit: BoxFit.cover,
+              borderRadius: BorderRadius.circular(imageBorderRadius),
             ),
           ),
 
