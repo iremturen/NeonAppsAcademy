@@ -8,3 +8,8 @@ const double containerTitleFontSize = 24;
 const double containerHeight = 180;
 
 const double buttonHeight = 60;
+
+const double timerFontSize = 56;
+
+
+

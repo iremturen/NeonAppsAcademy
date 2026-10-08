@@ -3,14 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:secret_decryption/constants/colors.dart';
 import 'package:secret_decryption/constants/dimensions.dart';
 import 'package:secret_decryption/data/helpers/decryption_helper.dart';
+import 'package:secret_decryption/data/helpers/notification_helper.dart';
 import 'package:secret_decryption/presentation/models/custom_button_model.dart';
 import 'package:secret_decryption/presentation/models/custom_container_model.dart';
 import 'package:secret_decryption/presentation/models/custom_text_model.dart';
+import 'package:secret_decryption/presentation/views/waiting_view.dart';
 
 import 'package:secret_decryption/presentation/widgets/custom_app_bar.dart';
 import 'package:secret_decryption/presentation/widgets/custom_background.dart';
 import 'package:secret_decryption/presentation/widgets/custom_button.dart';
 import 'package:secret_decryption/presentation/widgets/custom_container.dart';
+import 'package:secret_decryption/presentation/widgets/custom_security_code.dart';
 import 'package:secret_decryption/presentation/widgets/custom_text.dart';
 
 class DecryptionView extends StatefulWidget {
@@ -22,12 +25,16 @@ class DecryptionView extends StatefulWidget {
 
 class _DecryptionViewState extends State<DecryptionView> {
   String encryptedMessage = '';
+  String securityCode = '';
+  bool showSecurityCode = false;
+  final TextEditingController controller = TextEditingController();
 
   @override
   void initState() {
     super.initState();
 
     encryptedMessage = DecryptionHelper.generateEncryptedMessage();
+    securityCode = DecryptionHelper.generateSecurityCode();
   }
 
   @override
@@ -37,12 +44,11 @@ class _DecryptionViewState extends State<DecryptionView> {
       body: CustomBackground(
         child: Column(
           children: [
-            const SizedBox(height: 120),
-
+            const SizedBox(height: 80),
             CustomText(
               model: CustomTextModel(
                 text: 'SYSTEM STATUS: ONLINE',
-                fontSize: 12,
+                fontSize: appBarSubtitleFontSize,
                 fontWeight: FontWeight.w500,
                 color: red,
                 textAlign: TextAlign.center,
@@ -113,18 +119,36 @@ class _DecryptionViewState extends State<DecryptionView> {
                 borderRadius: borderRadius,
                 fontWeight: FontWeight.bold,
               ),
-              onPressed: () {},
+              onPressed: () {
+                setState(() {
+                  showSecurityCode = true;
+                });
+                NotificationHelper.showSecurityCode(securityCode);
+              },
             ),
-            const SizedBox(height: 40),
-            CustomText(
-              model: CustomTextModel(
-                text: '●  SECURE CONNECTION',
-                fontSize: 11,
-                fontWeight: FontWeight.w500,
-                color: red,
-                textAlign: TextAlign.center,
+            if (showSecurityCode) ...[
+              const SizedBox(height: 60),
+              CustomSecurityCode(
+                controller: controller,
+                onPressed: () {
+                  final isCorrect = DecryptionHelper.validateSecurityCode(
+                    enteredCode: controller.text,
+                    securityCode: securityCode,
+                  );
+
+                  if (isCorrect) {
+                    NotificationHelper.showSecurityCode('ACCESS GRANTED');
+
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const WaitingView(),
+                      ),
+                    );
+                  }
+                },
               ),
-            ),
+            ],
           ],
         ),
       ),

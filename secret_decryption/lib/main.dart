@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:secret_decryption/data/helpers/notification_helper.dart';
 import 'package:secret_decryption/presentation/views/decryption_view.dart';
 
-void main() {
-  runApp(const SecretDecryptionApp());
-}
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-class SecretDecryptionApp extends StatelessWidget {
-  const SecretDecryptionApp({super.key});
+  await NotificationHelper.initialize();
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
+  runApp(
+    const MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Secret Decryption',
-      home: const DecryptionView(),
-    );
-  }
+      home: DecryptionView(),
+    ),
+  );
 }
