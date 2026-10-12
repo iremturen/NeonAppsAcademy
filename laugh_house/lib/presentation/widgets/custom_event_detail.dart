@@ -15,62 +15,51 @@ class CustomEventDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              CustomImage(
-                model: CustomImageModel(
-                  imagePath: model.imageUrl,
-                  width: double.infinity,
-                  height: buyTicketsEventImageSize,
-                  fit: BoxFit.contain,
-                ),
-              ),
-              const SizedBox(height: 20),
-              Row(
+    return Column(
+      children: [
+        CustomImage(
+          model: CustomImageModel(
+            imagePath: model.imageUrl,
+            width: double.infinity,
+            height: AppDimensions.buyTicketsEventImageSize,
+            fit: BoxFit.contain,
+          ),
+        ),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            CustomDateCard(
+              day: model.dateDay,
+              month: model.dateMonth,
+            ),
+            Expanded(
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CustomDateCard(
-                    day: model.dateDay,
-                    month: model.dateMonth,
+                  CustomText(
+                    model: CustomTextModel(
+                      text: model.title,
+                      fontSize: AppDimensions.cardTitleFontSize,
+                      fontWeight: FontWeight.bold,
+                      color: AppColor.white,
+                      textAlign: TextAlign.left,
+                    ),
                   ),
-                  const SizedBox(width: 24),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        CustomText(
-                          model: CustomTextModel(
-                            text: model.title,
-                            fontSize: cardTitleFontSize,
-                            fontWeight: FontWeight.bold,
-                            color: white,
-                            textAlign: TextAlign.left,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        CustomText(
-                          model: CustomTextModel(
-                            text: model.time,
-                            fontSize: cardSubtitleFontSize,
-                            fontWeight: FontWeight.bold,
-                            color: pink,
-                            textAlign: TextAlign.left,
-                          ),
-                        ),
-                      ],
+                  CustomText(
+                    model: CustomTextModel(
+                      text: model.time,
+                      fontSize: AppDimensions.cardSubtitleFontSize,
+                      fontWeight: FontWeight.bold,
+                      color: AppColor.pink,
+                      textAlign: TextAlign.left,
                     ),
                   ),
                 ],
               ),
-            ],
-          ),
-        ],
-      ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }

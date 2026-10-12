@@ -19,8 +19,8 @@ class CustomPastEventCard extends StatelessWidget {
     return CustomContainer(
       model: CustomContainerModel(
         color: Colors.transparent,
-        borderRadius: borderRadius,
-        border: Border.all(color: grey.withValues(alpha: 0.6), width: 0.5),
+        borderRadius: AppDimensions.borderRadius,
+        border: Border.all(color: AppColor.grey.withValues(alpha: AppDimensions.cardBorderOpacity), width: 1),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,7 +29,7 @@ class CustomPastEventCard extends StatelessWidget {
             model: CustomImageModel(
               imagePath: model.imageUrl,
               width: double.infinity,
-              height: complateCardImageHeight,
+              height: AppDimensions.complateCardImageHeight,
               fit: BoxFit.fitWidth,
             ),
           ),
@@ -38,9 +38,9 @@ class CustomPastEventCard extends StatelessWidget {
             child: CustomText(
               model: CustomTextModel(
                 text: model.title,
-                fontSize: complateCardFontSize,
+                fontSize: AppDimensions.complateCardFontSize,
                 fontWeight: FontWeight.bold,
-                color: grey,
+                color: AppColor.grey,
                 textAlign: TextAlign.left,
               ),
             ),

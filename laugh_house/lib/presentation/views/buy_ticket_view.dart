@@ -27,82 +27,73 @@ class _BuyTicketViewState extends State<BuyTicketView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: bg,
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.all(20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CustomContainer(
-                  model: CustomContainerModel(
-                    color: bg,
-                    borderRadius: borderRadius,
+        child: ListView(
+          padding: EdgeInsets.all(AppDimensions.pagePadding),
+          children: [
+            CustomContainer(
+              model: CustomContainerModel(
+                color: AppColor.bg,
+                borderRadius: AppDimensions.borderRadius,
+              ),
+              child: Row(
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: Icon(
+                      Icons.arrow_back,
+                      color: AppColor.grey,
+                      size: AppDimensions.buyTicketsBackIconSizez,
+                    ),
                   ),
-                  child: Row(
-                    children: [
-                      IconButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        icon: Icon(
-                          Icons.arrow_back,
-                          color: grey,
-                          size: buyTicketsBackIconSizez,
-                        ),
-                      ),
-                      CustomText(
-                        model: CustomTextModel(
-                          text: 'BACK TO SCHEDULE',
-                          fontSize: mainSubtitleFontSize,
-                          fontWeight: FontWeight.bold,
-                          color: grey,
-                          textAlign: TextAlign.left,
-                        ),
-                      ),
-                    ],
+                  CustomText(
+                    model: CustomTextModel(
+                      text: 'BACK TO SCHEDULE',
+                      fontSize: AppDimensions.mainSubtitleFontSize,
+                      fontWeight: FontWeight.bold,
+                      color: AppColor.grey,
+                      textAlign: TextAlign.left,
+                    ),
                   ),
-                ),
-                SizedBox(height: 40),
-                CustomText(
-                  model: CustomTextModel(
-                    text: 'Choose Your Tickets',
-                    fontSize: mainSubtitleFontSize,
-                    fontWeight: FontWeight.bold,
-                    color: pink,
-                    textAlign: TextAlign.left,
-                  ),
-                ),
-                CustomText(
-                  model: CustomTextModel(
-                    text: 'ONE LAST STEP',
-                    fontSize: mainTitleFontSize,
-                    fontWeight: FontWeight.bold,
-                    color: white,
-                    textAlign: TextAlign.left,
-                  ),
-                ),
-                const SizedBox(height: 24),
-                CustomEventDetail(model: model),
-                const SizedBox(height: 24),
-
-                CustomTicketOption(
-                  quantity: quantity,
-                  onChanged: (newQuantity) {
-                    setState(() {
-                      quantity = newQuantity;
-                    });
-                  },
-                ),
-                const SizedBox(height: 16),
-                CustomOrderContainer(
-                  model: model,
-                  quantity: quantity,
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
+            SizedBox(height: 40),
+            CustomText(
+              model: CustomTextModel(
+                text: 'Choose Your Tickets',
+                fontSize: AppDimensions.mainSubtitleFontSize,
+                fontWeight: FontWeight.bold,
+                color: AppColor.pink,
+                textAlign: TextAlign.left,
+              ),
+            ),
+            CustomText(
+              model: CustomTextModel(
+                text: 'ONE LAST STEP',
+                fontSize: AppDimensions.mainTitleFontSize,
+                fontWeight: FontWeight.bold,
+                color: AppColor.white,
+                textAlign: TextAlign.left,
+              ),
+            ),
+            const SizedBox(height: 24),
+            CustomEventDetail(model: model),
+            const SizedBox(height: 24),
+
+            CustomTicketOption(
+              quantity: quantity,
+              onChanged: (newQuantity) {
+                setState(() {
+                  quantity = newQuantity;
+                });
+              },
+            ),
+            const SizedBox(height: 16),
+            CustomOrderContainer(model: model, quantity: quantity),
+          ],
         ),
       ),
     );

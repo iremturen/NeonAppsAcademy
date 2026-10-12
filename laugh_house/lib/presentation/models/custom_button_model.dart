@@ -15,11 +15,11 @@ class CustomButtonModel {
   const CustomButtonModel({
     required this.text,
     required this.onPressed,
-    this.backgroundColor = pink,
-    this.textColor = bg,
-    this.fontSize = buttonFontSize,
+    this.backgroundColor = AppColor.pink,
+    this.textColor = AppColor.bg,
+    this.fontSize = AppDimensions.buttonFontSize,
     this.fontWeight = FontWeight.bold,
-    this.borderRadius = 24,
+    this.borderRadius = AppDimensions.borderRadius,
     this.padding = const EdgeInsets.symmetric(
       horizontal: 18,
       vertical: 12,

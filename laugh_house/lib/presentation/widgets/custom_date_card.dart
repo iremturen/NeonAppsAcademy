@@ -13,11 +13,11 @@ class CustomDateCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: AppDimensions.dateContainerHorizontalPadding, vertical: AppDimensions.dateContainerVerticalPadding),
       decoration: BoxDecoration(
         color: Colors.transparent,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: white.withValues(alpha: 0.6), width: 1),
+        borderRadius: BorderRadius.circular(AppDimensions.borderRadius),
+        border: Border.all(color: AppColor.white.withValues(alpha: AppDimensions.cardBorderOpacity), width: 1),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -25,18 +25,18 @@ class CustomDateCard extends StatelessWidget {
           CustomText(
             model: CustomTextModel(
               text: day,
-              fontSize: dateCardTitle,
+              fontSize: AppDimensions.dateCardTitle,
               fontWeight: FontWeight.bold,
-              color: pink,
+              color: AppColor.pink,
               textAlign: TextAlign.center,
             ),
           ),
           CustomText(
             model: CustomTextModel(
               text: month.toUpperCase(),
-              fontSize: monthCardTitle,
-              fontWeight: FontWeight.w600,
-              color: white.withValues(alpha: 0.6),
+              fontSize: AppDimensions.monthCardTitle,
+              fontWeight: FontWeight.bold,
+              color: AppColor.white.withValues(alpha: AppDimensions.cardBorderOpacity),
               textAlign: TextAlign.center,
             ),
           ),

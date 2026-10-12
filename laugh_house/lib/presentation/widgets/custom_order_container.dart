@@ -23,48 +23,47 @@ class CustomOrderContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomContainer(
       model: CustomContainerModel(
-        color: darkPurple,
-        borderRadius: borderRadius,
-        border: Border.all(color: white.withValues(alpha: 0.25), width: 1),
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        color: AppColor.darkPurple,
+        borderRadius: AppDimensions.borderRadius,
+        border: Border.all(color: AppColor.white.withValues(alpha: AppDimensions.cardBorderOpacity), width: 1),
+        padding: const EdgeInsets.symmetric(horizontal: AppDimensions.buttonHorizontalPadding, vertical: AppDimensions.buttonVerticalPadding),
       ),
       child: Column(
+        spacing: AppDimensions.bigSpacing,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           const CustomText(
             model: CustomTextModel(
               text: 'ORDER SUMMRY',
-              fontSize: cardTitleFontSize,
+              fontSize: AppDimensions.cardTitleFontSize,
               fontWeight: FontWeight.bold,
-              color: pink,
+              color: AppColor.pink,
               textAlign: TextAlign.left,
             ),
           ),
-          const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const CustomText(
                 model: CustomTextModel(
                   text: 'Total',
-                  fontSize: cardTitleFontSize,
+                  fontSize: AppDimensions.cardTitleFontSize,
                   fontWeight: FontWeight.bold,
-                  color: white,
+                  color: AppColor.white,
                   textAlign: TextAlign.left,
                 ),
               ),
               CustomText(
                 model: CustomTextModel(
                   text: '₺ ${quantity * model.ticketPrice}',
-                  fontSize: cardTitleFontSize,
+                  fontSize: AppDimensions.cardTitleFontSize,
                   fontWeight: FontWeight.bold,
-                  color: neonGreen,
+                  color: AppColor.neonGreen,
                   textAlign: TextAlign.right,
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 40,),
           CustomButton(
             model: CustomButtonModel(
               text: 'CONTINUE TO PAYMENT',

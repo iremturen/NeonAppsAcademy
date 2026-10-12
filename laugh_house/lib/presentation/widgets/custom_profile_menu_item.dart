@@ -23,21 +23,21 @@ class ProfileMenuItem extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 20),
         child: Row(
+          spacing: AppDimensions.bigSpacing,
           children: [
-            Icon(icon, color: pink, size: profilePageIconSize),
-            const SizedBox(width: 12),
+            Icon(icon, color: AppColor.pink, size: AppDimensions.profilePageIconSize),
             Expanded(
               child: CustomText(
                 model: CustomTextModel(
                   text: title,
-                  fontSize: profilePageFontSize,
+                  fontSize: AppDimensions.profilePageFontSize,
                   fontWeight: FontWeight.bold,
-                  color: white,
+                  color: AppColor.white,
                   textAlign: TextAlign.left,
                 ),
               ),
             ),
-            const Icon(Icons.chevron_right, color: grey),
+            const Icon(Icons.chevron_right, color: AppColor.grey),
           ],
         ),
       ),

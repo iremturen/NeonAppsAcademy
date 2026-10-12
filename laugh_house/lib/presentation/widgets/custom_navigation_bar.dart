@@ -16,19 +16,20 @@ class CustomBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      elevation: AppDimensions.appBarElevation,
       currentIndex: currentIndex,
       onTap: onTap,
       type: BottomNavigationBarType.fixed,
-      backgroundColor: bg,
-      selectedItemColor: neonGreen,
-      unselectedItemColor: grey,
-      selectedFontSize: navigationBarFontSize,
-      unselectedFontSize: navigationBarFontSize - 1,
+      backgroundColor: AppColor.bg,
+      selectedItemColor: AppColor.neonGreen,
+      unselectedItemColor: AppColor.grey,
+      selectedFontSize: AppDimensions.navigationBarFontSize,
+      unselectedFontSize: AppDimensions.navigationBarFontSize - 1,
       showUnselectedLabels: true,
       items: List.generate(
         icons.length,
         (index) => BottomNavigationBarItem(
-          icon: Icon(icons[index], size: navigationBarIconSize),
+          icon: Icon(icons[index], size: AppDimensions.navigationBarIconSize),
           label: labels[index],
         ),
       ),

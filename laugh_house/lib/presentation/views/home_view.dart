@@ -15,79 +15,69 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const CustomAppBar(),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const CustomAppBar(),
-                const SizedBox(height: 24),
-                CustomText(
-                  model: CustomTextModel(
-                    text: 'FREE UP YOUR NIGHT FOR COMEDY',
-                    fontSize: mainSubtitleFontSize,
-                    fontWeight: FontWeight.bold,
-                    color: pink,
-                    textAlign: TextAlign.left,
+        child: ListView(
+          padding: const EdgeInsets.all(AppDimensions.pagePadding),
+          children: [
+            CustomText(
+              model: CustomTextModel(
+                text: 'FREE UP YOUR NIGHT FOR COMEDY',
+                fontSize: AppDimensions.mainSubtitleFontSize,
+                fontWeight: FontWeight.bold,
+                color: AppColor.pink,
+                textAlign: TextAlign.left,
+              ),
+            ),
+            CustomText(
+              model: CustomTextModel(
+                text: 'UPCOMING SHOWS',
+                fontSize: AppDimensions.mainTitleFontSize,
+                fontWeight: FontWeight.bold,
+                color: AppColor.white,
+                textAlign: TextAlign.left,
+              ),
+            ),
+              const SizedBox(height: 20,),
+            ...shows
+                .where((show) => show.status == ShowStatus.upcoming)
+                .map(
+                  (show) => Padding(
+                    padding: const EdgeInsets.only(bottom: AppDimensions.pagePadding),
+                    child: CustomCard(model: show),
                   ),
                 ),
-                CustomText(
-                  model: CustomTextModel(
-                    text: 'UPCOMING SHOWS',
-                    fontSize: mainTitleFontSize,
-                    fontWeight: FontWeight.bold,
-                    color: white,
-                    textAlign: TextAlign.left,
-                  ),
-                ),
-                const SizedBox(height: 20),
 
-                ...shows
-                    .where((show) => show.status == ShowStatus.upcoming)
+            CustomText(
+              model: CustomTextModel(
+                text: 'PAST EVENTS',
+                fontSize: AppDimensions.mainTitleFontSize,
+                fontWeight: FontWeight.bold,
+                color: AppColor.white,
+                textAlign: TextAlign.left,
+              ),
+            ),
+
+            const SizedBox(height: 20,),
+            SizedBox(
+              height: 200,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: shows
+                    .where((show) => show.status == ShowStatus.completed)
                     .map(
                       (show) => Padding(
-                        padding: const EdgeInsets.only(bottom: 20),
-                        child: CustomCard(model: show),
+                        padding: const EdgeInsets.only(right: AppDimensions.contentPadding),
+                        child: SizedBox(
+                          width: 150,
+                          child: CustomPastEventCard(model: show),
+                        ),
                       ),
-                    ),
-
-                const SizedBox(height: 28),
-
-                CustomText(
-                  model: CustomTextModel(
-                    text: 'PAST EVENTS',
-                    fontSize: mainTitleFontSize,
-                    fontWeight: FontWeight.bold,
-                    color: white,
-                    textAlign: TextAlign.left,
-                  ),
-                ),
-
-                const SizedBox(height: 16),
-
-                SizedBox(
-                  height: 200,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: shows
-                        .where((show) => show.status == ShowStatus.completed)
-                        .map(
-                          (show) => Padding(
-                            padding: const EdgeInsets.only(right: 12),
-                            child: SizedBox(
-                              width: 150,
-                              child: CustomPastEventCard(model: show),
-                            ),
-                          ),
-                        )
-                        .toList(),
-                  ),
-                ),
-              ],
+                    )
+                    .toList(),
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );

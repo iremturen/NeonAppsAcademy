@@ -20,17 +20,18 @@ class CustomShowDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomContainer(
       model: CustomContainerModel(
-        color: bg,
-        borderRadius: borderRadius,
-        padding: const EdgeInsets.all(16),
+        color: AppColor.bg,
+        borderRadius: AppDimensions.borderRadius,
+        padding: const EdgeInsets.all(AppDimensions.contentPadding),
       ),
       child: Column(
+        spacing: AppDimensions.smallSpacing,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
+            spacing: AppDimensions.bigSpacing,
             children: [
               CustomDateCard(day: model.dateDay, month: model.dateMonth),
-              const SizedBox(width: 14),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,17 +39,17 @@ class CustomShowDetails extends StatelessWidget {
                     CustomText(
                       model: CustomTextModel(
                         text: model.title,
-                        fontSize: cardTitleFontSize,
+                        fontSize: AppDimensions.cardTitleFontSize,
                         fontWeight: FontWeight.bold,
-                        color: white,
+                        color: AppColor.white,
                         textAlign: TextAlign.left,
                       ),
                     ),
                     CustomText(
                       model: CustomTextModel(
                         text: model.time,
-                        fontSize: cardSubtitleFontSize,
-                        color: white.withValues(alpha: 0.6),
+                        fontSize: AppDimensions.cardSubtitleFontSize,
+                        color: AppColor.white.withValues(alpha: AppDimensions.cardBorderOpacity),
                         fontWeight: FontWeight.normal,
                         textAlign: TextAlign.left,
                       ),
@@ -58,9 +59,7 @@ class CustomShowDetails extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 12),
-          const Divider(color: grey),
-          const SizedBox(height: 12),
+          const Divider(color: AppColor.grey),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -70,8 +69,8 @@ class CustomShowDetails extends StatelessWidget {
                   CustomText(
                     model: CustomTextModel(
                       text: 'PRICE',
-                      fontSize: monthCardTitle,
-                      color: white.withValues(alpha: 0.6),
+                      fontSize: AppDimensions.monthCardTitle,
+                      color: AppColor.white.withValues(alpha: AppDimensions.cardBorderOpacity),
                       fontWeight: FontWeight.normal,
                       textAlign: TextAlign.left,
                     ),
@@ -79,8 +78,8 @@ class CustomShowDetails extends StatelessWidget {
                   CustomText(
                     model: CustomTextModel(
                       text: '₺ ${model.ticketPrice}',
-                      fontSize: cardTitleFontSize,
-                      color: neonGreen,
+                      fontSize: AppDimensions.cardTitleFontSize,
+                      color: AppColor.neonGreen,
                       fontWeight: FontWeight.bold,
                       textAlign: TextAlign.left,
                     ),
@@ -90,9 +89,9 @@ class CustomShowDetails extends StatelessWidget {
               CustomButton(
                 model: CustomButtonModel(
                   text: 'Buy Ticket',
-                  backgroundColor: pink,
-                  textColor: bg,
-                  borderRadius: borderRadius,
+                  backgroundColor: AppColor.pink,
+                  textColor: AppColor.bg,
+                  borderRadius: AppDimensions.borderRadius,
                   onPressed: () {
                     Navigator.push(
                       context,

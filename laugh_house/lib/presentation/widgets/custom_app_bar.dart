@@ -10,46 +10,51 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({super.key});
 
   @override
-  Size get preferredSize => const Size.fromHeight(100);
-
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight + 5);
+//appbar a çevirdim saat şarj gözüktü evelaiton ekledim ayrım oldu
   @override
   Widget build(BuildContext context) {
-    return Row(
-          children: [
-            CustomImage(
-              model: CustomImageModel(
-                imagePath: 'assets/images/logo_icon.png',
-                width: iconSize,
-                height: iconSize,
-                fit: BoxFit.contain,
+    return AppBar(
+      backgroundColor: AppColor.bg,
+      elevation: AppDimensions.appBarElevation,
+      title: Row(
+
+        spacing: AppDimensions.bigSpacing,
+        children: [
+          CustomImage(
+            model: CustomImageModel(
+              imagePath: 'assets/images/logo_icon.png',
+              width: AppDimensions.iconSize,
+              height: AppDimensions.iconSize,
+              fit: BoxFit.contain,
+            ),
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              CustomText(
+                model: CustomTextModel(
+                  text: 'KIKIR',
+                  fontSize: AppDimensions.headerTitleFontSize,
+                  fontWeight: FontWeight.bold,
+                  color: AppColor.white,
+                  textAlign: TextAlign.left,
+                ),
               ),
-            ),
-            const SizedBox(width: 24),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                CustomText(
-                  model: CustomTextModel(
-                    text: 'KIKIR',
-                    fontSize: headerTitleFontSize,
-                    fontWeight: FontWeight.bold,
-                    color: white,
-                    textAlign: TextAlign.left,
-                  ),
+              CustomText(
+                model: CustomTextModel(
+                  text: 'COMEDY CLUB',
+                  fontSize: AppDimensions.headerSubtitleFontSize,
+                  fontWeight: FontWeight.bold,
+                  color: AppColor.neonGreen,
+                  textAlign: TextAlign.left,
                 ),
-                CustomText(
-                  model: CustomTextModel(
-                    text: 'COMEDY CLUB',
-                    fontSize: headerSubtitleFontSize,
-                    fontWeight: FontWeight.bold,
-                    color: neonGreen,
-                    textAlign: TextAlign.left,
-                  ),
-                ),
-              ],
-            ),
-          ],
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

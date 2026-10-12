@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:laugh_house/presentation/views/memories_view.dart';
+import 'package:laugh_house/presentation/views/gallery_view.dart';
 import 'package:laugh_house/presentation/views/profile_view.dart';
 import 'package:laugh_house/presentation/widgets/custom_navigation_bar.dart';
 import 'package:laugh_house/presentation/views/home_view.dart';
@@ -26,7 +26,7 @@ class _MainViewState extends State<MainView> {
           });
         },
       ),
-      const MemoriesView(),
+      const GalleryView(),
       const ProfileView(),
     ];
 

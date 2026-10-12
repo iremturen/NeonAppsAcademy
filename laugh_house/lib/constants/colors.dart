@@ -1,10 +1,15 @@
 import 'package:flutter/painting.dart';
 
-const Color neonGreen = Color(0xFFd8ff3d);
-const Color pink = Color(0xFFff6d87);
-const Color white = Color(0xFFffffff);
-const Color grey = Color.fromARGB(102, 221, 221, 221);
-const Color black = Color(0xFF000000);
-const Color bg = Color(0xFF150c15);
-const Color darkPurple = Color(0xFF21131e);
+final class AppColor {
+  AppColor._();
 
+  static const Color neonGreen = Color(0xFFd8ff3d);
+  static const Color pink = Color(0xFFff6d87);
+  static const Color white = Color(0xFFffffff);
+  static const Color grey = Color.fromARGB(252, 208, 207, 207);
+  static const Color black = Color(0xFF000000);
+  static const Color bg = Color(0xFF150c15);
+  static const Color darkPurple = Color(0xFF21131e);
+}
+
+//sabitleri class olarak yazdım 

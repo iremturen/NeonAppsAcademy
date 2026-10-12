@@ -21,23 +21,24 @@ class CustomTicketOption extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomContainer(
       model: CustomContainerModel(
-        color: darkPurple,
-        borderRadius: borderRadius,
+        color: AppColor.darkPurple,
+        borderRadius: AppDimensions.borderRadius,
         border: Border.all(
-          color: white.withValues(alpha: 0.25),
+          color: AppColor.white.withValues(alpha: AppDimensions.cardBorderOpacity),
           width: 1,
         ),
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: AppDimensions.buttonHorizontalPadding, vertical: AppDimensions.buttonVerticalPadding),
       ),
       child: Row(
+        spacing: AppDimensions.bigSpacing,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           const CustomText(
             model: CustomTextModel(
               text: 'Standard Ticket',
-              fontSize: mainSubtitleFontSize,
+              fontSize: AppDimensions.mainSubtitleFontSize,
               fontWeight: FontWeight.bold,
-              color: white,
+              color: AppColor.white,
               textAlign: TextAlign.left,
             ),
           ),

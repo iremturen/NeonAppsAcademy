@@ -26,14 +26,14 @@ class CustomTicketStepper extends StatelessWidget {
                 ? () => onChanged(quantity - 1)
                 : null,
             icon: const Icon(Icons.remove),
-            color: neonGreen,
-            disabledColor: neonGreen,
+            color: AppColor.neonGreen,
+            disabledColor: AppColor.neonGreen,
           ),
           Text(
             '$quantity',
             style: const TextStyle(
-              color: neonGreen,
-              fontSize: cardTitleFontSize,
+              color: AppColor.neonGreen,
+              fontSize: AppDimensions.cardTitleFontSize,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -42,7 +42,7 @@ class CustomTicketStepper extends StatelessWidget {
                 ? () => onChanged(quantity + 1)
                 : null,
             icon: const Icon(Icons.add),
-            color: neonGreen,
+            color: AppColor.neonGreen,
           ),
         ],
     );
