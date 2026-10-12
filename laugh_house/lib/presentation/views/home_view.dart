@@ -15,7 +15,6 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -23,6 +22,8 @@ class HomeView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const CustomAppBar(),
+                const SizedBox(height: 24),
                 CustomText(
                   model: CustomTextModel(
                     text: 'FREE UP YOUR NIGHT FOR COMEDY',
@@ -71,9 +72,7 @@ class HomeView extends StatelessWidget {
                   child: ListView(
                     scrollDirection: Axis.horizontal,
                     children: shows
-                        .where(
-                          (show) => show.status == ShowStatus.completed,
-                        )
+                        .where((show) => show.status == ShowStatus.completed)
                         .map(
                           (show) => Padding(
                             padding: const EdgeInsets.only(right: 12),

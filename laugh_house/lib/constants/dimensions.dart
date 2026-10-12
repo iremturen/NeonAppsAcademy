@@ -20,3 +20,12 @@ const double navigationBarIconSize = 32;
 
 const double complateCardImageHeight = 140;
 const double complateCardFontSize = 12;
+
+const double profileCardTitleFontSize = 24;
+const double profileCardPointText = 20;
+
+const double profilePageIconSize = 36;
+const double profilePageFontSize = 18;
+
+const double buyTicketsBackIconSizez = 20;
+const double buyTicketsEventImageSize = 400;

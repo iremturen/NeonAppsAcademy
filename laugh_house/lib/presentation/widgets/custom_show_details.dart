@@ -3,6 +3,7 @@ import 'package:laugh_house/constants/colors.dart';
 import 'package:laugh_house/constants/dimensions.dart';
 import 'package:laugh_house/data/model/show_model.dart';
 import 'package:laugh_house/presentation/models/custom_button_model.dart';
+import 'package:laugh_house/presentation/views/buy_ticket_view.dart';
 import 'package:laugh_house/presentation/widgets/custom_button.dart';
 import 'package:laugh_house/presentation/widgets/custom_container.dart';
 import 'package:laugh_house/presentation/widgets/custom_date_card.dart';
@@ -91,8 +92,15 @@ class CustomShowDetails extends StatelessWidget {
                   text: 'Buy Ticket',
                   backgroundColor: pink,
                   textColor: bg,
-                  borderRadius: 10,
-                  onPressed: () {},
+                  borderRadius: borderRadius,
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => BuyTicketView(model: model),
+                      ),
+                    );
+                  },
                 ),
               ),
             ],

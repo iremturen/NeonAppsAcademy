@@ -19,7 +19,7 @@ class CustomButtonModel {
     this.textColor = bg,
     this.fontSize = buttonFontSize,
     this.fontWeight = FontWeight.bold,
-    this.borderRadius = 10,
+    this.borderRadius = 24,
     this.padding = const EdgeInsets.symmetric(
       horizontal: 18,
       vertical: 12,

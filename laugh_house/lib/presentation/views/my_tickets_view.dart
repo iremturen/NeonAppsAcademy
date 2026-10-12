@@ -15,25 +15,28 @@ class MyTicketsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bg,
-      appBar: AppBar(
-        backgroundColor: bg,
-        foregroundColor: white,
-        title: const CustomText(
-          model: CustomTextModel(
-            text: 'My Tickets',
-            fontSize: headerTitleFontSize,
-            fontWeight: FontWeight.bold,
-            color: white,
-            textAlign: TextAlign.left,
-          ),
-        ),
-      ),
-      body: Center(
+      body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(24),
+          padding: const EdgeInsets.all(20),
           child: Column(
-            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const CustomText(
+                model: CustomTextModel(
+                  text: 'MY TICKETS',
+                  fontSize: mainTitleFontSize,
+                  fontWeight: FontWeight.bold,
+                  color: white,
+                  textAlign: TextAlign.left,
+                ),
+              ),
+              Expanded(
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(24),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
               const Icon(
                 Icons.confirmation_number_outlined,
                 size: iconSize,
@@ -69,6 +72,11 @@ class MyTicketsView extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(
                     horizontal: 28,
                     vertical: 14,
+                  ),
+                ),
+              ),
+                      ],
+                    ),
                   ),
                 ),
               ),

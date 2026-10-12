@@ -14,14 +14,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      automaticallyImplyLeading: false,
-      backgroundColor: bg,
-      elevation: 0,
-      toolbarHeight: preferredSize.height,
-      title: Padding(
-        padding: const EdgeInsets.only(top: 12),
-        child: Row(
+    return Row(
           children: [
             CustomImage(
               model: CustomImageModel(
@@ -57,8 +50,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               ],
             ),
           ],
-        ),
-      ),
     );
   }
 }

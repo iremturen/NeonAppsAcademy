@@ -12,39 +12,46 @@ class MemoriesView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bg,
-      appBar: AppBar(
-        backgroundColor: bg,
-        foregroundColor: white,
-        title: const CustomText(
-          model: CustomTextModel(
-            text: 'Event Gallery',
-            fontSize: headerTitleFontSize,
-            fontWeight: FontWeight.bold,
-            color: white,
-            textAlign: TextAlign.left,
-          ),
-        ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: GridView.builder(
-          itemCount: memories.length,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 12,
-            mainAxisSpacing: 12,
-            childAspectRatio: 0.8,
-          ),
-          itemBuilder: (context, index) {
-            return ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Image.network(
-                memories[index],
-                fit: BoxFit.cover,
-                width: double.infinity,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const CustomText(
+                model: CustomTextModel(
+                  text: 'EVENT GALLERY',
+                  fontSize: mainTitleFontSize,
+                  fontWeight: FontWeight.bold,
+                  color: white,
+                  textAlign: TextAlign.left,
+                ),
               ),
-            );
-          },
+              const SizedBox(height: 20),
+              Expanded(
+                child: GridView.builder(
+                  itemCount: memories.length,
+                  gridDelegate:
+                      const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 12,
+                    mainAxisSpacing: 12,
+                    childAspectRatio: 0.8,
+                  ),
+                  itemBuilder: (context, index) {
+                    return ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Image.network(
+                        memories[index],
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
