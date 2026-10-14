@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hero_game/app/data/models/custom_container_model.dart';
+import 'package:hero_game/app/presentation/models/custom_container_model.dart';
 
 class CustomContainer extends StatelessWidget {
   final CustomContainerModel model;

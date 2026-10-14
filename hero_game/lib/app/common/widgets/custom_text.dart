@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hero_game/app/data/models/custom_text_model.dart' show CustomTextModel;
+import 'package:hero_game/app/presentation/models/custom_text_model.dart' show CustomTextModel;
 
 class CustomText extends StatelessWidget {
   final CustomTextModel model;

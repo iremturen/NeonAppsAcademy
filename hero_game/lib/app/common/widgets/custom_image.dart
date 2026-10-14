@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hero_game/app/data/models/custom_image_model.dart';
+import 'package:hero_game/app/presentation/models/custom_image_model.dart';
 
 class CustomImage extends StatelessWidget {
   final CustomImageModel model;

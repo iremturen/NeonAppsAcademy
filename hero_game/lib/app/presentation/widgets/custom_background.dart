@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hero_game/app/common/constants/images.dart';
 import 'package:hero_game/app/common/widgets/custom_image.dart';
-import 'package:hero_game/app/data/models/custom_image_model.dart';
+import 'package:hero_game/app/presentation/models/custom_image_model.dart';
 
 class CustomBackground extends StatelessWidget {
   const CustomBackground({super.key});

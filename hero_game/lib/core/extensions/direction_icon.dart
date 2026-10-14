@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'direction.dart';
+import '../../app/common/constants/direction.dart';
 
 extension DirIcon on Direction {
   IconData get icon {

@@ -9,9 +9,9 @@ import 'package:hero_game/app/common/utils/responsive_helper.dart';
 import 'package:hero_game/app/common/widgets/custom_button.dart';
 import 'package:hero_game/app/common/widgets/custom_container.dart';
 import 'package:hero_game/app/common/widgets/custom_text.dart';
-import 'package:hero_game/app/data/models/custom_button_model.dart';
-import 'package:hero_game/app/data/models/custom_container_model.dart';
-import 'package:hero_game/app/data/models/custom_text_model.dart';
+import 'package:hero_game/app/presentation/models/custom_button_model.dart';
+import 'package:hero_game/app/presentation/models/custom_container_model.dart';
+import 'package:hero_game/app/presentation/models/custom_text_model.dart';
 import 'package:hero_game/app/presentation/views/maze_view.dart';
 import 'package:hero_game/app/presentation/widgets/custom_background.dart';
 
