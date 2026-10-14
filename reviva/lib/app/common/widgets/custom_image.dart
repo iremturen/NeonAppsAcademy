@@ -11,11 +11,24 @@ class CustomImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset(
-      model.imagePath,
-      fit: model.fit,
-      width: model.width,
-      height: model.height,
-    );
+    if (model.imageFile != null) {
+      return Image.file(
+        model.imageFile!,
+        fit: model.fit,
+        width: model.width,
+        height: model.height,
+      );
+    }
+
+    if (model.imagePath != null) {
+      return Image.asset(
+        model.imagePath!,
+        fit: model.fit,
+        width: model.width,
+        height: model.height,
+      );
+    }
+
+    return const SizedBox.shrink();
   }
 }

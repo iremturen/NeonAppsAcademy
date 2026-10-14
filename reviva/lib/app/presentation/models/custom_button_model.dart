@@ -16,6 +16,7 @@ class CustomButtonModel {
   final double borderWidth;
   final EdgeInsetsGeometry padding;
   final VoidCallback onPressed;
+  final List<Color>? gradient;
 
   const CustomButtonModel({
     required this.text,
@@ -31,5 +32,6 @@ class CustomButtonModel {
       horizontal: AppDimensions.buttonPaddingHorizontal,
       vertical: AppDimensions.buttonPaddingVertical,
     ),
+    this.gradient,
   });
 }

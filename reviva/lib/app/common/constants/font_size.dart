@@ -1,8 +1,9 @@
 
 enum AppFontSize {
-  small(12),
-  medium(16),
-  big(24);
+  small(16),
+  medium(18),
+  big(28),
+  title(60);
 
   final double value;
   const AppFontSize(this.value);

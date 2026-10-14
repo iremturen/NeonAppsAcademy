@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:reviva/app/common/constants/colors.dart';
-import 'package:reviva/app/common/constants/dimensions.dart';
 import 'package:reviva/app/common/constants/font_size.dart';
 import 'package:reviva/app/common/widgets/custom_text.dart';
 import 'package:reviva/app/presentation/models/custom_button_model.dart';
@@ -15,24 +14,22 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
+        color: model.gradient == null ? model.backgroundColor : null,
+        gradient: model.gradient == null
+            ? null
+            : LinearGradient(
+                colors: model.gradient!,
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+              ),
         borderRadius: BorderRadius.circular(model.borderRadius),
-        boxShadow: [
-          BoxShadow(
-            color: model.borderColor.withValues(alpha: 0.7),
-            blurRadius: AppDimensions.buttonBlurRadius,
-            spreadRadius: AppDimensions.buttonSpreadRadius,
-          ),
-          BoxShadow(
-            color: model.borderColor.withValues(alpha: 0.4),
-            blurRadius: AppDimensions.buttonBlurRadius,
-            spreadRadius: AppDimensions.buttonSpreadRadius,
-          ),
-        ],
       ),
       child: ElevatedButton(
         onPressed: model.onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: model.backgroundColor,
+          backgroundColor: model.gradient != null
+              ? Colors.transparent
+              : model.backgroundColor,
           foregroundColor: model.textColor,
           padding: model.padding,
           shape: RoundedRectangleBorder(
@@ -42,7 +39,6 @@ class CustomButton extends StatelessWidget {
               width: model.borderWidth,
             ),
           ),
-          elevation: 0,
         ),
         child: CustomText(
           model: CustomTextModel(

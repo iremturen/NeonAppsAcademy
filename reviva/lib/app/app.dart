@@ -1,21 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:reviva/app/common/constants/app_strings.dart';
-import 'package:reviva/app/presentation/theme/app_theme.dart';
-import 'package:reviva/app/presentation/theme/app_theme_mode.dart';
-import 'package:reviva/app/presentation/views/welcome_view.dart';
+import 'package:reviva/app/presentation/pages/home_page.dart';
 
-class RevivaApp extends StatelessWidget {
+class RevivaApp extends StatefulWidget {
   const RevivaApp({super.key});
+
+  @override
+  State<RevivaApp> createState() => _RevivaAppState();
+}
+
+class _RevivaAppState extends State<RevivaApp> {
+  bool _isDarkMode = false;
+
+  void _changeTheme(bool isDarkMode) {
+    setState(() {
+      _isDarkMode = isDarkMode;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: AppStrings.appTitle,
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
-      themeMode: AppThemeMode.initialMode,
-      home: const WelcomePage(),
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
+      themeMode: _isDarkMode ? ThemeMode.dark : ThemeMode.light,
+      home: HomePage(
+        isDarkMode: _isDarkMode,
+        onThemeChanged: _changeTheme,
+      ),
     );
   }
 }

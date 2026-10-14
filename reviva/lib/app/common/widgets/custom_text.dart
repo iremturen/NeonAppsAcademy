@@ -15,7 +15,7 @@ class CustomText extends StatelessWidget {
     return Text(
       model.text,
       textAlign: model.textAlign,
-      style: GoogleFonts.ibmPlexSerif(
+      style: GoogleFonts.inter(
         fontSize: model.fontSize,
         fontWeight: model.fontWeight,
         color: model.color,

@@ -9,13 +9,13 @@ final class AppColors {
   static const Color transparent = Colors.transparent;
 
   // main
-  static const Color primary = Color(0xFF8065E9);
+  static const Color primary = Color(0xFF855ffb);
   static const Color primaryLight = Color.fromARGB(255, 215, 203, 249);
   static const Color primaryDark = Color(0xFF6046C7);
 
   // light theme
-  static const Color lightBackground = Color(0xFFF8F7FC);
-  static const Color lightSurface = Color(0xFFFFFFFF);
+  static const Color lightBackground = Color.fromARGB(255, 244, 242, 251);
+  static const Color lightSurface = Color.fromARGB(255, 215, 203, 249);
   static const Color lightText = Color(0xFF29243A);
   static const Color lightSecondaryText = Color(0xFF777184);
   static const Color lightBorder = Color(0xFFE9E4F4);
@@ -26,4 +26,9 @@ final class AppColors {
   static const Color darkText = Color(0xFFF6F3FF);
   static const Color darkSecondaryText = Color(0xFFB7B0C9);
   static const Color darkBorder = Color(0xFF393347);
+
+  static const List<Color> buttonGradient = [
+    primaryLight,
+    primary
+  ];
 }
