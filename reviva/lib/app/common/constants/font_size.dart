@@ -1,5 +1,6 @@
 
 enum AppFontSize {
+  bodyMedium(14),
   small(16),
   medium(20),
   big(28),

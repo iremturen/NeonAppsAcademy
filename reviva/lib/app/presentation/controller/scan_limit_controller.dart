@@ -12,7 +12,8 @@ class ScanLimitController {
 
   Future<bool> useScan() async {
     final preferences = await SharedPreferences.getInstance();
-    final remainingScans = await getRemainingScans();
+    final remainingScans =
+        preferences.getInt(_remainingScansKey) ?? initialScanLimit;
 
     if (remainingScans <= 0) {
       return false;
@@ -28,7 +29,8 @@ class ScanLimitController {
 
   Future<void> addScan() async {
     final preferences = await SharedPreferences.getInstance();
-    final remainingScans = await getRemainingScans();
+    final remainingScans =
+        preferences.getInt(_remainingScansKey) ?? initialScanLimit;
 
     await preferences.setInt(
       _remainingScansKey,

@@ -66,7 +66,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) => SettingsPage(
-                    isDarkMode: isDarkMode,
                     onThemeChanged: onThemeChanged,
                   ),
                 ),

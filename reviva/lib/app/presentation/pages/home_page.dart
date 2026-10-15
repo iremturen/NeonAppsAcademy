@@ -2,19 +2,16 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:reviva/app/common/constants/app_strings.dart';
-import 'package:reviva/app/common/constants/colors.dart';
-import 'package:reviva/app/common/constants/dimensions.dart';
 import 'package:reviva/app/common/constants/font_size.dart';
 import 'package:reviva/app/common/constants/font_weight.dart';
-import 'package:reviva/app/common/widgets/custom_button.dart';
+import 'package:reviva/app/common/widgets/custom_text.dart';
 import 'package:reviva/app/presentation/controller/ad_controller.dart';
 import 'package:reviva/app/presentation/controller/scan_limit_controller.dart';
-import 'package:reviva/app/presentation/models/custom_button_model.dart';
+import 'package:reviva/app/presentation/models/custom_text_model.dart';
 import 'package:reviva/app/presentation/pages/photo_enhancement_page.dart';
 import 'package:reviva/app/presentation/widgets/banner_ad_view.dart';
 import 'package:reviva/app/presentation/widgets/custom_app_bar.dart';
-import 'package:reviva/app/presentation/widgets/photo_picker_view.dart';
-import 'package:reviva/app/presentation/widgets/scan_quota_view.dart';
+import 'package:reviva/app/presentation/widgets/home_page_content.dart';
 
 class HomePage extends StatefulWidget {
   final bool isDarkMode;
@@ -90,8 +87,8 @@ class _HomePageState extends State<HomePage> {
         if (!mounted) return;
 
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Ad is not ready yet. Please try again.'),
+          SnackBar(
+            content: _buildSnackBarText(AppStrings.adNotReadyMessage),
           ),
         );
       },
@@ -109,7 +106,23 @@ class _HomePageState extends State<HomePage> {
 
     ScaffoldMessenger.of(
       context,
-    ).showSnackBar(const SnackBar(content: Text('You earned one extra scan!')));
+    ).showSnackBar(
+      SnackBar(content: _buildSnackBarText(AppStrings.extraScanEarnedMessage)),
+    );
+  }
+
+  CustomText _buildSnackBarText(String text) {
+    final theme = Theme.of(context);
+
+    return CustomText(
+      model: CustomTextModel(
+        text: text,
+        fontSize: AppFontSize.bodyMedium.value,
+        fontWeight: AppFontWeight.normal.value,
+        color: theme.colorScheme.onInverseSurface,
+        textAlign: TextAlign.left,
+      ),
+    );
   }
 
   @override
@@ -119,41 +132,13 @@ class _HomePageState extends State<HomePage> {
         isDarkMode: widget.isDarkMode,
         onThemeChanged: widget.onThemeChanged,
       ),
-      body: SafeArea(
-        child: Column(
-          children: [
-            ScanQuotaView(
-              remainingScans: _remainingScans,
-              onWatchAd: _onWatchAd,
-            ),
-            Expanded(
-              child: PhotoPickerView(
-                onImageSelected: _onImageSelected,
-                isDarkMode: widget.isDarkMode,
-                onThemeChanged: widget.onThemeChanged,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                top: AppDimensions.spacingSmall,
-                left: AppDimensions.spacingLarge,
-                right: AppDimensions.spacingLarge,
-                bottom: AppDimensions.spacingMedium,
-              ),
-              child: CustomButton(
-                model: CustomButtonModel(
-                  icon: Icons.auto_fix_high,
-                  text: AppStrings.beautifyButtonText,
-                  gradient: AppColors.buttonGradient,
-                  fontSize: AppFontSize.big,
-                  fontWeight: AppFontWeight.bold,
-                  textColor: AppColors.white,
-                  onPressed: _openEnhancementPage,
-                ),
-              ),
-            ),
-          ],
-        ),
+      body: HomePageContent(
+        remainingScans: _remainingScans,
+        onWatchAd: _onWatchAd,
+        onImageSelected: _onImageSelected,
+        isDarkMode: widget.isDarkMode,
+        onThemeChanged: widget.onThemeChanged,
+        onEnhance: _openEnhancementPage,
       ),
       bottomNavigationBar: BannerAdView(adController: _adController),
     );

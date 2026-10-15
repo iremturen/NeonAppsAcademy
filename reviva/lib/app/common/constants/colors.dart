@@ -10,8 +10,6 @@ final class AppColors {
 
   // main
   static const Color primary = Color(0xFF855ffb);
-  static const Color primaryLight = Color.fromARGB(255, 215, 203, 249);
-  static const Color primaryDark = Color(0xFF6046C7);
 
   // light theme
   static const Color lightBackground = Color.fromARGB(255, 244, 242, 251);
@@ -31,9 +29,9 @@ final class AppColors {
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
     colors: [
-      Color(0xFFB7A0FF), // Açık lavanta
-      Color(0xFF9675FF), // Canlı mor
-      Color(0xFF7048E8), // Derin mor
+      Color(0xFFB7A0FF),
+      Color(0xFF9675FF),
+      Color(0xFF7048E8),
     ],
   );
 }

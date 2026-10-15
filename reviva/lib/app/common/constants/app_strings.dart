@@ -16,7 +16,6 @@ class AppStrings {
   static const String takePhotoButtonText = 'Take a Photo';
 
   static const String settingHeaderTitle = 'Settings';
-  static const String settingThemeModeTitle = 'Settings';
   static const String settingThemeText = 'App Theme';
   static const String settingDarkModeText = 'Dark Mode';
   static const String beautifyButtonText = 'Beautify';
@@ -34,4 +33,15 @@ class AppStrings {
   static const String watchAd = 'Watch Ad';
   static const String warning =
       'Your free scans are used up. Watch an ad to get an extra scan.';
+  static const String adNotReadyMessage =
+      'Ad is not ready yet. Please try again.';
+  static const String extraScanEarnedMessage = 'You earned one extra scan!';
+
+  static const String bannerAdLoadFailed = 'Banner ad failed to load:';
+  static const String interstitialAdLoadFailed =
+      'Interstitial ad failed to load:';
+  static const String rewardedAdLoadFailed = 'Rewarded ad failed to load:';
+  static const String interstitialAdShowFailed =
+      'Interstitial ad failed to show:';
+  static const String rewardedAdShowFailed = 'Rewarded ad failed to show:';
 }

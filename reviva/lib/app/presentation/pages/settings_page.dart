@@ -8,25 +8,16 @@ import 'package:reviva/app/common/widgets/custom_text.dart';
 import 'package:reviva/app/data/datasources/settings_items.dart';
 import 'package:reviva/app/presentation/models/custom_icon_model.dart';
 import 'package:reviva/app/presentation/models/custom_text_model.dart';
-import 'package:reviva/app/presentation/utils/setting_icon_helper.dart';
 import 'package:reviva/app/presentation/widgets/custom_header.dart';
 import 'package:reviva/app/presentation/widgets/setting_item.dart';
 
-class SettingsPage extends StatefulWidget {
-  final bool isDarkMode;
+class SettingsPage extends StatelessWidget {
   final ValueChanged<bool> onThemeChanged;
 
   const SettingsPage({
     super.key,
-    required this.isDarkMode,
     required this.onThemeChanged,
   });
-
-  @override
-  State<SettingsPage> createState() => _SettingsPageState();
-}
-
-class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
@@ -42,9 +33,9 @@ class _SettingsPageState extends State<SettingsPage> {
                 padding: const EdgeInsets.all(AppDimensions.spacingLarge),
                 children: [
                   ...settingsItems.map(
-                    (title) => SettingItem(
-                      icon: getSettingIcon(title),
-                      title: title,
+                    (item) => SettingItem(
+                      icon: item.icon,
+                      title: item.title,
                       onTap: () {},
                     ),
                   ),
@@ -80,7 +71,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       ),
                     ),
                     value: Theme.of(context).brightness == Brightness.dark,
-                    onChanged: widget.onThemeChanged,
+                    onChanged: onThemeChanged,
                   ),
                 ],
               ),

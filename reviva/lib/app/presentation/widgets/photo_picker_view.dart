@@ -6,16 +6,15 @@ import 'package:reviva/app/common/constants/colors.dart';
 import 'package:reviva/app/common/constants/dimensions.dart';
 import 'package:reviva/app/common/constants/font_size.dart';
 import 'package:reviva/app/common/constants/font_weight.dart';
-import 'package:reviva/app/common/widgets/custom_button.dart';
 import 'package:reviva/app/common/widgets/custom_container.dart';
 import 'package:reviva/app/common/widgets/custom_icon.dart';
 import 'package:reviva/app/presentation/controller/photo_picker_controller.dart';
-import 'package:reviva/app/presentation/models/custom_button_model.dart';
 import 'package:reviva/app/presentation/models/custom_container_model.dart';
 import 'package:reviva/app/presentation/models/custom_icon_model.dart';
 import 'package:reviva/app/presentation/models/custom_text_model.dart';
 import 'package:reviva/app/common/widgets/custom_text.dart';
 import 'package:reviva/app/presentation/pages/photo_enhancement_page.dart';
+import 'package:reviva/app/presentation/widgets/photo_picker_actions.dart';
 
 class PhotoPickerView extends StatefulWidget {
   final ValueChanged<File?> onImageSelected;
@@ -48,6 +47,27 @@ class _PhotoPickerViewState extends State<PhotoPickerView> {
 
     setState(() {});
     widget.onImageSelected(_controller.selectedImage);
+  }
+
+  Future<void> _pickPhotoFromCamera() async {
+    await _controller.pickImage(ImageSource.camera);
+
+    if (!mounted) return;
+
+    final imageFile = _controller.selectedImage;
+
+    if (imageFile == null) return;
+
+    await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => PhotoEnhancementPage(
+          imageFile: imageFile,
+          isDarkMode: widget.isDarkMode,
+          onThemeChanged: widget.onThemeChanged,
+        ),
+      ),
+    );
   }
 
   @override
@@ -126,53 +146,10 @@ class _PhotoPickerViewState extends State<PhotoPickerView> {
               ),
             ),
           ),
-          Row(
-            spacing: AppDimensions.spacingSmall,
-            children: [
-              Expanded(
-                child: CustomButton(
-                  model: CustomButtonModel(
-                    text: AppStrings.choosePhotoButtonText,
-                    onPressed: () => _controller.pickImage(ImageSource.gallery),
-                    backgroundColor: colorScheme.primary,
-                    textColor: AppColors.white,
-                    fontSize: AppFontSize.small,
-                    fontWeight: AppFontWeight.medium,
-                  ),
-                ),
-              ),
-              Expanded(
-                child: CustomButton(
-                  model: CustomButtonModel(
-                    text: AppStrings.takePhotoButtonText,
-                    onPressed: () async {
-                      await _controller.pickImage(ImageSource.camera);
-
-                      if (!context.mounted) return;
-
-                      final imageFile = _controller.selectedImage;
-
-                      if (imageFile == null) return;
-
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => PhotoEnhancementPage(
-                            imageFile: imageFile,
-                            isDarkMode: widget.isDarkMode,
-                            onThemeChanged: widget.onThemeChanged,
-                          ),
-                        ),
-                      );
-                    },
-                    backgroundColor: colorScheme.primary,
-                    textColor: AppColors.white,
-                    fontSize: AppFontSize.small,
-                    fontWeight: AppFontWeight.medium,
-                  ),
-                ),
-              ),
-            ],
+          PhotoPickerActions(
+            onChoosePhoto: () => _controller.pickImage(ImageSource.gallery),
+            onTakePhoto: _pickPhotoFromCamera,
+            color: colorScheme.primary,
           ),
         ],
       ),

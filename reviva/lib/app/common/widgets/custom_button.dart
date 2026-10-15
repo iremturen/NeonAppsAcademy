@@ -28,11 +28,6 @@ class CustomButton extends StatelessWidget {
               offset: AppDimensions.photoEnhancementButtonOffset,
               blurRadius: AppDimensions.photoEnhancementButtonBlurRadius,
             ),
-            BoxShadow(
-              color: AppColors.primary.withValues(alpha: AppDimensions.photoEnhancementButtonAlpha),
-              offset: AppDimensions.photoEnhancementButtonOffset,
-              blurRadius: AppDimensions.photoEnhancementButtonBlurRadius,
-            ),
           ],
           BoxShadow(
             color: AppColors.black.withValues(

@@ -38,6 +38,7 @@ class _PhotoEnhancementPageState extends State<PhotoEnhancementPage>
   late final PhotoEnhancementController _controller;
   late final AdController _adController;
   late final ScanLimitController _scanLimitController;
+  bool _isFinishing = false;
 
   @override
   void initState() {
@@ -58,28 +59,49 @@ class _PhotoEnhancementPageState extends State<PhotoEnhancementPage>
   }
 
   Future<void> _startScan() async {
-    final canScan = await _scanLimitController.useScan();
+    final remainingScans = await _scanLimitController.getRemainingScans();
 
     if (!mounted) return;
 
-    if (canScan) {
+    if (remainingScans > 0) {
       _controller.startOrResume();
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          backgroundColor: AppColors.darkBorder,
-          content: CustomText(
-            model: CustomTextModel(
-              text:AppStrings.warning,
-              fontSize: AppFontSize.small.value,
-              fontWeight: AppFontWeight.medium.value,
-              color: AppColors.white,
-              textAlign: TextAlign.center,
-            ),
+      _showScanLimitWarning();
+    }
+  }
+
+  Future<void> _finishScan() async {
+    if (_isFinishing) return;
+
+    _isFinishing = true;
+    final scanUsed = await _scanLimitController.useScan();
+
+    if (!mounted) return;
+
+    if (!scanUsed) {
+      _isFinishing = false;
+      _showScanLimitWarning();
+      return;
+    }
+
+    _showInterstitialAd();
+  }
+
+  void _showScanLimitWarning() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: AppColors.darkBorder,
+        content: CustomText(
+          model: CustomTextModel(
+            text: AppStrings.warning,
+            fontSize: AppFontSize.small.value,
+            fontWeight: AppFontWeight.medium.value,
+            color: AppColors.white,
+            textAlign: TextAlign.center,
           ),
         ),
-      );
-    }
+      ),
+    );
   }
 
   void _showInterstitialAd() {
@@ -139,7 +161,7 @@ class _PhotoEnhancementPageState extends State<PhotoEnhancementPage>
                       onStart: _startScan,
                       onPause: _controller.pause,
                       onStop: _controller.stop,
-                      onFinish: _showInterstitialAd,
+                      onFinish: _finishScan,
                     ),
                   ],
                 ),

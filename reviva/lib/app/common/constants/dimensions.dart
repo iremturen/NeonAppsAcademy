@@ -7,14 +7,6 @@ final class AppDimensions {
   static const double animationSize = 180;
 
   static const double borderRadius = 24;
-  static const double screenWidthFactor = 0.7;
-
-  static const double buttonBorder = 2;
-  static const double buttonBorderRadius = 36;
-  static const double buttonBlurRadius = 36;
-  static const double buttonSpreadRadius = 4;
-  static const double buttonPaddingHorizontal = 20;
-  static const double buttonPaddingVertical = 20;
   static const double buttonBlur = 10;
   static const double buttonShadowAlpha = 0.3;
   static const Offset buttonShadowOffset = Offset(0, 5);
@@ -35,12 +27,10 @@ final class AppDimensions {
   static const double settingListIconSize = 22;
 
   static const double imageAspectRatio = 4 / 5;
-  static const double photoEnhancementPageIconSize = 80;
   static const Offset photoEnhancementButtonOffset = Offset(2, 2);
   static const double photoEnhancementButtonAlpha = 0.4;
   static const double photoEnhancementButtonBlurRadius = 4;
   static const double photoEnhancementButtonBorderWidth = 0.5;
 
   static const double progressRate = 100;
-
 }

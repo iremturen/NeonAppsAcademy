@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:reviva/app/common/constants/app_strings.dart';
 
 class AdController {
   BannerAd? _bannerAd;
@@ -15,8 +16,6 @@ class AdController {
   BannerAd? get bannerAd => _bannerAd;
 
   bool get isBannerReady => _bannerAd != null;
-
-  bool get isInterstitialReady => _interstitialAd != null;
 
   String get _bannerAdUnitId {
     if (Platform.isAndroid) {
@@ -73,7 +72,7 @@ class AdController {
         onAdFailedToLoad: (ad, error) {
           _isBannerLoading = false;
           ad.dispose();
-          debugPrint('Banner reklamı yüklenemedi: $error');
+          debugPrint('${AppStrings.bannerAdLoadFailed} $error');
           onUpdate();
         },
       ),
@@ -99,7 +98,7 @@ class AdController {
         onAdFailedToLoad: (error) {
           _isInterstitialLoading = false;
           _interstitialAd = null;
-          debugPrint('Interstitial reklamı yüklenemedi: $error');
+          debugPrint('${AppStrings.interstitialAdLoadFailed} $error');
         },
       ),
     );
@@ -122,7 +121,7 @@ class AdController {
         onAdFailedToLoad: (error) {
           _isRewardedLoading = false;
           _rewardedAd = null;
-          debugPrint('Rewarded reklam yüklenemedi: $error');
+          debugPrint('${AppStrings.rewardedAdLoadFailed} $error');
         },
       ),
     );
@@ -147,7 +146,7 @@ class AdController {
       },
       onAdFailedToShowFullScreenContent: (ad, error) {
         ad.dispose();
-        debugPrint('Interstitial reklamı gösterilemedi: $error');
+        debugPrint('${AppStrings.interstitialAdShowFailed} $error');
         onAdDismissed();
         loadInterstitialAd();
       },
@@ -170,36 +169,24 @@ class AdController {
 
     _rewardedAd = null;
 
-    bool rewardEarned = false;
-
     ad.fullScreenContentCallback = FullScreenContentCallback(
       onAdDismissedFullScreenContent: (ad) {
         ad.dispose();
-
-        if (!rewardEarned) {
-          // Kullanıcı reklamı ödül kazanmadan kapattı.
-        }
 
         loadRewardedAd();
       },
       onAdFailedToShowFullScreenContent: (ad, error) {
         ad.dispose();
-        debugPrint('Rewarded reklam gösterilemedi: $error');
+        debugPrint('${AppStrings.rewardedAdShowFailed} $error');
         loadRewardedAd();
       },
     );
 
     ad.show(
       onUserEarnedReward: (ad, reward) {
-        rewardEarned = true;
         onRewardEarned();
       },
     );
-  }
-
-  void disposeBannerAd() {
-    _bannerAd?.dispose();
-    _bannerAd = null;
   }
 
   void dispose() {
