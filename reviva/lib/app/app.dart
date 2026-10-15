@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:reviva/app/presentation/pages/home_page.dart';
+import 'package:reviva/app/presentation/pages/welcome_page.dart';
+import 'package:reviva/app/presentation/theme/app_theme.dart';
 
 class RevivaApp extends StatefulWidget {
   const RevivaApp({super.key});
@@ -21,10 +22,10 @@ class _RevivaAppState extends State<RevivaApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.light(),
-      darkTheme: ThemeData.dark(),
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
       themeMode: _isDarkMode ? ThemeMode.dark : ThemeMode.light,
-      home: HomePage(
+      home: WelcomePage(
         isDarkMode: _isDarkMode,
         onThemeChanged: _changeTheme,
       ),

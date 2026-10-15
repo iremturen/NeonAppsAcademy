@@ -27,8 +27,13 @@ final class AppColors {
   static const Color darkSecondaryText = Color(0xFFB7B0C9);
   static const Color darkBorder = Color(0xFF393347);
 
-  static const List<Color> buttonGradient = [
-    primaryLight,
-    primary
-  ];
+  static const LinearGradient buttonGradient = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [
+      Color(0xFFB7A0FF), // Açık lavanta
+      Color(0xFF9675FF), // Canlı mor
+      Color(0xFF7048E8), // Derin mor
+    ],
+  );
 }

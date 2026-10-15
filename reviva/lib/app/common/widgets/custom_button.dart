@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:reviva/app/common/constants/colors.dart';
-import 'package:reviva/app/common/constants/font_size.dart';
+import 'package:reviva/app/common/constants/dimensions.dart';
 import 'package:reviva/app/common/widgets/custom_text.dart';
 import 'package:reviva/app/presentation/models/custom_button_model.dart';
 import 'package:reviva/app/presentation/models/custom_text_model.dart';
@@ -13,40 +13,72 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
       decoration: BoxDecoration(
         color: model.gradient == null ? model.backgroundColor : null,
-        gradient: model.gradient == null
+        gradient: model.gradient,
+        border: model.borderColor == null
             ? null
-            : LinearGradient(
-                colors: model.gradient!,
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-              ),
-        borderRadius: BorderRadius.circular(model.borderRadius),
-      ),
-      child: ElevatedButton(
-        onPressed: model.onPressed,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: model.gradient != null
-              ? Colors.transparent
-              : model.backgroundColor,
-          foregroundColor: model.textColor,
-          padding: model.padding,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(model.borderRadius),
-            side: BorderSide(
-              color: model.borderColor,
-              width: model.borderWidth,
+            : Border.all(color: model.borderColor!, width: model.borderWidth),
+        borderRadius: BorderRadius.circular(AppDimensions.borderRadius),
+        boxShadow: [
+          if (model.borderColor != null) ...[
+            BoxShadow(
+              color: AppColors.primary.withValues(alpha: AppDimensions.photoEnhancementButtonAlpha),
+              offset: AppDimensions.photoEnhancementButtonOffset,
+              blurRadius: AppDimensions.photoEnhancementButtonBlurRadius,
             ),
+            BoxShadow(
+              color: AppColors.primary.withValues(alpha: AppDimensions.photoEnhancementButtonAlpha),
+              offset: AppDimensions.photoEnhancementButtonOffset,
+              blurRadius: AppDimensions.photoEnhancementButtonBlurRadius,
+            ),
+          ],
+          BoxShadow(
+            color: AppColors.black.withValues(
+            alpha: AppDimensions.buttonShadowAlpha,
+            ),
+            offset: AppDimensions.buttonShadowOffset,
+            blurRadius: AppDimensions.buttonBlur,
           ),
-        ),
-        child: CustomText(
-          model: CustomTextModel(
-            text: model.text,
-            fontWeight: model.fontWeight.value,
-            textAlign: TextAlign.center,
-            fontSize: model.fontSize?.value ?? AppFontSize.medium.value,
-            color: model.textColor ?? AppColors.white,
+        ],
+      ),
+      child: Material(
+        color: AppColors.transparent,
+        borderRadius: BorderRadius.circular(AppDimensions.borderRadius),
+        child: InkWell(
+          onTap: model.onPressed,
+          borderRadius: BorderRadius.circular(AppDimensions.borderRadius),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: AppDimensions.spacingMedium,
+              horizontal: AppDimensions.spacingLarge,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                if (model.icon != null) ...[
+                  Icon(
+                    model.icon,
+                    size: model.fontSize.value,
+                    color: model.textColor,
+                  ),
+                  const SizedBox(width: AppDimensions.spacingSmall),
+                ],
+                Flexible(
+                  child: CustomText(
+                    model: CustomTextModel(
+                      text: model.text,
+                      fontSize: model.fontSize.value,
+                      fontWeight: model.fontWeight.value,
+                      color: model.textColor,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

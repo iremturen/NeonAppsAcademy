@@ -79,7 +79,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         textAlign: TextAlign.start,
                       ),
                     ),
-                    value: widget.isDarkMode,
+                    value: Theme.of(context).brightness == Brightness.dark,
                     onChanged: widget.onThemeChanged,
                   ),
                 ],

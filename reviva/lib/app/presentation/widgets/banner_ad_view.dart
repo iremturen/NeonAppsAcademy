@@ -1,73 +1,44 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:reviva/app/presentation/controller/ad_controller.dart';
 
 class BannerAdView extends StatefulWidget {
-  const BannerAdView({super.key});
+  final AdController adController;
+
+  const BannerAdView({
+    super.key,
+    required this.adController,
+  });
 
   @override
   State<BannerAdView> createState() => _BannerAdViewState();
 }
 
 class _BannerAdViewState extends State<BannerAdView> {
-  BannerAd? _bannerAd;
-
-  String get _adUnitId {
-    if (Platform.isAndroid) {
-      return 'ca-app-pub-3940256099942544/9214589741';
-    }
-
-    if (Platform.isIOS) {
-      return 'ca-app-pub-3940256099942544/2435281174';
-    }
-
-    return '';
-  }
-
   @override
   void initState() {
     super.initState();
-    _loadBannerAd();
+    _loadAd();
   }
 
-  void _loadBannerAd() {
-    if (!Platform.isAndroid && !Platform.isIOS) return;
-
-    final bannerAd = BannerAd(
-      adUnitId: _adUnitId,
-      size: AdSize.banner,
-      request: const AdRequest(),
-      listener: BannerAdListener(
-        onAdLoaded: (ad) {
-          if (!mounted) {
-            ad.dispose();
-            return;
-          }
-
-          setState(() {
-            _bannerAd = ad as BannerAd;
-          });
-        },
-        onAdFailedToLoad: (ad, error) {
-          debugPrint('Banner ad yüklenemedi: $error');
-          ad.dispose();
-        },
-      ),
+  void _loadAd() {
+    widget.adController.loadBannerAd(
+      onUpdate: () {
+        if (mounted) {
+          setState(() {});
+        }
+      },
     );
-
-    bannerAd.load();
   }
 
   @override
   void dispose() {
-    _bannerAd?.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final bannerAd = _bannerAd;
+    final BannerAd? bannerAd = widget.adController.bannerAd;
 
     if (bannerAd == null) {
       return const SizedBox.shrink();

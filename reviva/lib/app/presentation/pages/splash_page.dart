@@ -4,6 +4,7 @@ import 'package:reviva/app/common/constants/app_strings.dart';
 import 'package:reviva/app/common/constants/dimensions.dart';
 import 'package:reviva/app/common/constants/font_size.dart';
 import 'package:reviva/app/common/constants/font_weight.dart';
+import 'package:reviva/app/common/constants/images.dart';
 import 'package:reviva/app/common/widgets/custom_text.dart';
 import 'package:reviva/app/presentation/controller/splash_controller.dart';
 import 'package:reviva/app/presentation/models/custom_text_model.dart';
@@ -48,7 +49,7 @@ class _SplashPageState extends State<SplashPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Lottie.asset(
-              'assets/animations/loading.json',
+              AppImages.loadingIcon,
               width: AppDimensions.animationSize,
               height: AppDimensions.animationSize,
               repeat: true,

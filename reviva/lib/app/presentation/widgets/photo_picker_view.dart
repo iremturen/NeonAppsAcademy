@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:reviva/app/common/constants/app_strings.dart';
@@ -16,9 +15,19 @@ import 'package:reviva/app/presentation/models/custom_container_model.dart';
 import 'package:reviva/app/presentation/models/custom_icon_model.dart';
 import 'package:reviva/app/presentation/models/custom_text_model.dart';
 import 'package:reviva/app/common/widgets/custom_text.dart';
+import 'package:reviva/app/presentation/pages/photo_enhancement_page.dart';
 
 class PhotoPickerView extends StatefulWidget {
-  const PhotoPickerView({super.key});
+  final ValueChanged<File?> onImageSelected;
+  final bool isDarkMode;
+  final ValueChanged<bool> onThemeChanged;
+
+  const PhotoPickerView({
+    super.key,
+    required this.onImageSelected,
+    required this.isDarkMode,
+    required this.onThemeChanged,
+  });
 
   @override
   State<PhotoPickerView> createState() => _PhotoPickerViewState();
@@ -35,7 +44,10 @@ class _PhotoPickerViewState extends State<PhotoPickerView> {
   }
 
   void _onPhotoChanged() {
-    if (mounted) setState(() {});
+    if (!mounted) return;
+
+    setState(() {});
+    widget.onImageSelected(_controller.selectedImage);
   }
 
   @override
@@ -67,13 +79,11 @@ class _PhotoPickerViewState extends State<PhotoPickerView> {
                     color: colorScheme.primary,
                     width: AppDimensions.photoPickContainerBorder,
                   ),
-                  padding: const EdgeInsets.all(
-                    AppDimensions.spacingMedium,
-                  ),
+                  padding: const EdgeInsets.all(AppDimensions.spacingMedium),
                 ),
                 child: selectedImage == null
                     ? Column(
-                      spacing: AppDimensions.spacingSmall,
+                        spacing: AppDimensions.spacingSmall,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           CustomIcon(
@@ -86,7 +96,7 @@ class _PhotoPickerViewState extends State<PhotoPickerView> {
                           CustomText(
                             model: CustomTextModel(
                               text: AppStrings.pickPhotoTitle,
-                              fontSize: AppFontSize.big.value,
+                              fontSize: AppFontSize.medium.value,
                               fontWeight: AppFontWeight.bold.value,
                               color: colorScheme.onSurface,
                               textAlign: TextAlign.center,
@@ -95,9 +105,9 @@ class _PhotoPickerViewState extends State<PhotoPickerView> {
                           CustomText(
                             model: CustomTextModel(
                               text: AppStrings.pickPhotoSubtitle,
-                              fontSize: AppFontSize.medium.value,
+                              fontSize: AppFontSize.small.value,
                               fontWeight: AppFontWeight.normal.value,
-                              color: colorScheme.onSurfaceVariant,
+                              color: colorScheme.onSurface,
                               textAlign: TextAlign.center,
                             ),
                           ),
@@ -123,8 +133,7 @@ class _PhotoPickerViewState extends State<PhotoPickerView> {
                 child: CustomButton(
                   model: CustomButtonModel(
                     text: AppStrings.choosePhotoButtonText,
-                    onPressed: () =>
-                        _controller.pickImage(ImageSource.gallery),
+                    onPressed: () => _controller.pickImage(ImageSource.gallery),
                     backgroundColor: colorScheme.primary,
                     textColor: AppColors.white,
                     fontSize: AppFontSize.small,
@@ -136,9 +145,27 @@ class _PhotoPickerViewState extends State<PhotoPickerView> {
                 child: CustomButton(
                   model: CustomButtonModel(
                     text: AppStrings.takePhotoButtonText,
-                    onPressed: () =>
-                        _controller.pickImage(ImageSource.camera),
-                    backgroundColor: colorScheme.secondary,
+                    onPressed: () async {
+                      await _controller.pickImage(ImageSource.camera);
+
+                      if (!context.mounted) return;
+
+                      final imageFile = _controller.selectedImage;
+
+                      if (imageFile == null) return;
+
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => PhotoEnhancementPage(
+                            imageFile: imageFile,
+                            isDarkMode: widget.isDarkMode,
+                            onThemeChanged: widget.onThemeChanged,
+                          ),
+                        ),
+                      );
+                    },
+                    backgroundColor: colorScheme.primary,
                     textColor: AppColors.white,
                     fontSize: AppFontSize.small,
                     fontWeight: AppFontWeight.medium,

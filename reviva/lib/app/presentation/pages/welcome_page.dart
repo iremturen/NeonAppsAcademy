@@ -14,7 +14,14 @@ import 'package:reviva/app/presentation/models/custom_text_model.dart';
 import 'package:reviva/app/presentation/pages/splash_page.dart';
 
 class WelcomePage extends StatelessWidget {
-  const WelcomePage({super.key});
+  final bool isDarkMode;
+  final ValueChanged<bool> onThemeChanged;
+
+  const WelcomePage({
+    super.key,
+    required this.isDarkMode,
+    required this.onThemeChanged,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +69,7 @@ class WelcomePage extends StatelessWidget {
                     CustomText(
                       model: CustomTextModel(
                         text: AppStrings.welcomePageSubtitle,
-                        fontSize: AppFontSize.big.value,
+                        fontSize: AppFontSize.medium.value,
                         fontWeight: AppFontWeight.medium.value,
                         color: colorScheme.onSurface,
                         textAlign: TextAlign.center,
@@ -72,7 +79,7 @@ class WelcomePage extends StatelessWidget {
                     CustomText(
                       model: CustomTextModel(
                         text: AppStrings.welcomePageSubtitle2,
-                        fontSize: AppFontSize.medium.value,
+                        fontSize: AppFontSize.small.value,
                         fontWeight: AppFontWeight.medium.value,
                         color: colorScheme.onSurface,
                         textAlign: TextAlign.center,
@@ -89,14 +96,14 @@ class WelcomePage extends StatelessWidget {
                       fontSize: AppFontSize.medium,
                       fontWeight: AppFontWeight.bold,
                       textColor: colorScheme.onPrimary,
-                      text: 'Get Started',
+                      text: AppStrings.startButton,
                       onPressed: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) => SplashPage(
-                              isDarkMode: false,
-                              onThemeChanged: (value) {},
+                              isDarkMode: isDarkMode,
+                              onThemeChanged: onThemeChanged,
                             ),
                           ),
                         );

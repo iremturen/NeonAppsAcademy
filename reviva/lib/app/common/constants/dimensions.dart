@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 final class AppDimensions {
   AppDimensions._();
 
@@ -13,6 +15,9 @@ final class AppDimensions {
   static const double buttonSpreadRadius = 4;
   static const double buttonPaddingHorizontal = 20;
   static const double buttonPaddingVertical = 20;
+  static const double buttonBlur = 10;
+  static const double buttonShadowAlpha = 0.3;
+  static const Offset buttonShadowOffset = Offset(0, 5);
 
   static const double spacingSmall = 8;
   static const double spacingMedium = 16;
@@ -23,10 +28,19 @@ final class AppDimensions {
 
   static const double appBarSettingIconSize = 36;
 
-  static const double photoPickContainerBorder = 4;
-  static const double photoPickIconSize = 60;
+  static const double photoPickContainerBorder = 1;
+  static const double photoPickIconSize = 48;
 
   static const double backIconSize = 24;
   static const double settingListIconSize = 22;
+
+  static const double imageAspectRatio = 4 / 5;
+  static const double photoEnhancementPageIconSize = 80;
+  static const Offset photoEnhancementButtonOffset = Offset(2, 2);
+  static const double photoEnhancementButtonAlpha = 0.4;
+  static const double photoEnhancementButtonBlurRadius = 4;
+  static const double photoEnhancementButtonBorderWidth = 0.5;
+
+  static const double progressRate = 100;
 
 }
