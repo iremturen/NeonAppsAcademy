@@ -1,0 +1,70 @@
+import 'package:disney_characters/app/common/constants/colors.dart';
+import 'package:disney_characters/app/common/constants/dimensions.dart';
+import 'package:disney_characters/app/common/widgets/custom_text.dart';
+import 'package:disney_characters/app/presentation/models/custom_button_model.dart';
+import 'package:disney_characters/app/presentation/models/custom_text_model.dart';
+import 'package:flutter/material.dart';
+
+
+class CustomButton extends StatelessWidget {
+  final CustomButtonModel model;
+
+  const CustomButton({super.key, required this.model});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: model.gradient == null ? model.backgroundColor : null,
+        gradient: model.gradient,
+        border: model.borderColor == null
+            ? null
+            : Border.all(
+                color: model.borderColor!,
+                width: model.borderWidth ?? 1,
+              ),
+        borderRadius: BorderRadius.circular(AppDimensions.buttonBorderRadius),
+      ),
+      child: Material(
+        color: AppColors.transparent,
+        borderRadius: BorderRadius.circular(AppDimensions.buttonBorderRadius),
+        child: InkWell(
+          onTap: model.onPressed,
+          borderRadius: BorderRadius.circular(AppDimensions.buttonBorderRadius),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: AppDimensions.spacingMedium,
+              horizontal: AppDimensions.spacingLarge,
+            ),
+            child: Row(
+              spacing: AppDimensions.spacingSmall,
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                if (model.icon != null) ...[
+                  Icon(
+                    model.icon,
+                    size: model.fontSize.value,
+                    color: model.textColor,
+                  ),
+                ],
+                Flexible(
+                  child: CustomText(
+                    model: CustomTextModel(
+                      text: model.text,
+                      fontSize: model.fontSize,
+                      fontWeight: model.fontWeight,
+                      color: model.textColor,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

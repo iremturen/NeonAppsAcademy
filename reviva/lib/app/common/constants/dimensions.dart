@@ -11,9 +11,7 @@ final class AppDimensions {
   static const double buttonShadowAlpha = 0.3;
   static const Offset buttonShadowOffset = Offset(0, 5);
 
-  static const double spacingSmall = 8;
-  static const double spacingMedium = 16;
-  static const double spacingLarge = 24;
+
 
   static const double appIconSize = 48;
   static const double welcomePageIconSize = 160;
