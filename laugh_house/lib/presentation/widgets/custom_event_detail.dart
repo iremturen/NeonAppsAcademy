@@ -16,6 +16,7 @@ class CustomEventDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      spacing : AppDimensions.bigSpacing,
       children: [
         CustomImage(
           model: CustomImageModel(
@@ -26,6 +27,7 @@ class CustomEventDetail extends StatelessWidget {
           ),
         ),
         Row(
+          spacing : AppDimensions.bigSpacing,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CustomDateCard(

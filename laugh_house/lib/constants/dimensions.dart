@@ -1,6 +1,5 @@
 final class AppDimensions {
   AppDimensions._();
-  //sabitleri class olarak yazdım
   static const double iconSize = 48;
   static const double borderRadius = 24;
   static const double cardBorderOpacity = 0.5;

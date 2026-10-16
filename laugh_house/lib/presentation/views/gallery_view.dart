@@ -12,7 +12,6 @@ class GalleryView extends StatelessWidget {
       appBar: const CustomPageAppBar(title: 'EVENT GALLERY'),
       body: SafeArea(
         child: Padding(
-          //sabitten çektim
           padding: const EdgeInsets.all(AppDimensions.pagePadding),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

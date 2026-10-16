@@ -17,5 +17,3 @@ class LaughHouseApp extends StatelessWidget {
     );
   }
 }
-
-//mainden çekitm ayırdım

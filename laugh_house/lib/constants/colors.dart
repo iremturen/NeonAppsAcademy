@@ -11,5 +11,3 @@ final class AppColor {
   static const Color bg = Color(0xFF150c15);
   static const Color darkPurple = Color(0xFF21131e);
 }
-
-//sabitleri class olarak yazdım 

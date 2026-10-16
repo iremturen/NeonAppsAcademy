@@ -25,7 +25,7 @@ class CustomShowDetails extends StatelessWidget {
         padding: const EdgeInsets.all(AppDimensions.contentPadding),
       ),
       child: Column(
-        spacing: AppDimensions.smallSpacing,
+        spacing: AppDimensions.bigSpacing,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
