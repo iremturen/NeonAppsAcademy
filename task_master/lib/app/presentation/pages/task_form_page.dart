@@ -1,23 +1,26 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task_master/app/common/constants/app_colors.dart';
 import 'package:task_master/app/common/constants/app_string.dart';
 import 'package:task_master/app/common/constants/dimensions.dart';
 import 'package:task_master/app/common/constants/font_size.dart';
 import 'package:task_master/app/common/constants/font_weight.dart';
 import 'package:task_master/app/common/widgets/custom_button.dart';
-import 'package:task_master/app/domain/entities/task.dart';
-import 'package:task_master/app/presentation/blocs/cubits/task_cubit.dart';
-import 'package:task_master/app/presentation/widgets/custom_deadline_form_field.dart';
-import 'package:task_master/app/presentation/widgets/custom_form_field.dart';
 import 'package:task_master/app/common/widgets/custom_text.dart';
+import 'package:task_master/app/domain/entities/task.dart';
+import 'package:task_master/app/domain/enums/task_status.dart';
+import 'package:task_master/app/presentation/blocs/cubits/task_cubit.dart';
 import 'package:task_master/app/presentation/models/custom_button_model.dart';
 import 'package:task_master/app/presentation/models/custom_text_field_model.dart';
 import 'package:task_master/app/presentation/models/custom_text_model.dart';
+import 'package:task_master/app/presentation/widgets/custom_deadline_form_field.dart';
+import 'package:task_master/app/presentation/widgets/custom_form_field.dart';
 
 class TaskFormPage extends StatefulWidget {
   final String pageTitle;
-  const TaskFormPage({super.key, required this.pageTitle});
+  final Task? task;
+
+  const TaskFormPage({super.key, required this.pageTitle, this.task});
 
   @override
   State<TaskFormPage> createState() => _TaskFormPageState();
@@ -29,6 +32,19 @@ class _TaskFormPageState extends State<TaskFormPage> {
   final _descriptionController = TextEditingController();
 
   DateTime? _deadline;
+
+  @override
+  void initState() {
+    super.initState();
+
+    final task = widget.task;
+
+    if (task != null) {
+      _titleController.text = task.title;
+      _descriptionController.text = task.description;
+      _deadline = task.deadline;
+    }
+  }
 
   @override
   void dispose() {
@@ -55,14 +71,21 @@ class _TaskFormPageState extends State<TaskFormPage> {
   Future<void> _saveTask() async {
     if (!_formKey.currentState!.validate()) return;
 
+    final existingTask = widget.task;
+
     final task = Task(
-      id: DateTime.now().microsecondsSinceEpoch.toString(),
+      id: existingTask?.id ?? DateTime.now().microsecondsSinceEpoch.toString(),
       title: _titleController.text.trim(),
       description: _descriptionController.text.trim(),
       deadline: _deadline,
+      status: existingTask?.status ?? TaskStatus.pending,
     );
 
-    final success = await context.read<TaskCubit>().addTask(task);
+    final cubit = context.read<TaskCubit>();
+
+    final success = existingTask == null
+        ? await cubit.addTask(task)
+        : await cubit.updateTask(task);
 
     if (!mounted) return;
 
@@ -117,9 +140,10 @@ class _TaskFormPageState extends State<TaskFormPage> {
                       textAlign: TextAlign.left,
                     ),
                   ),
-
                   Padding(
-                    padding: EdgeInsets.only(top: AppDimensions.spacingLarge),
+                    padding: const EdgeInsets.only(
+                      top: AppDimensions.spacingLarge,
+                    ),
                     child: CustomFormField(
                       label: AppStrings.taskTitleLabel,
                       fieldModel: CustomTextFieldModel(
@@ -135,7 +159,9 @@ class _TaskFormPageState extends State<TaskFormPage> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: AppDimensions.spacingMedium),
+                    padding: const EdgeInsets.only(
+                      top: AppDimensions.spacingMedium,
+                    ),
                     child: CustomFormField(
                       label: AppStrings.taskDescriptionLabel,
                       fieldModel: CustomTextFieldModel(
@@ -146,12 +172,10 @@ class _TaskFormPageState extends State<TaskFormPage> {
                       ),
                     ),
                   ),
-
                   CustomDeadlineFormField(
                     deadline: _deadline,
                     onPressed: _selectDeadline,
                   ),
-
                   Padding(
                     padding: const EdgeInsets.only(
                       top: AppDimensions.spacingLarge,
