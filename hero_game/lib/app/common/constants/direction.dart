@@ -1,16 +1,20 @@
-enum Direction { 
-  up, 
-  down, 
+enum Direction {
+  up,
+  down,
   left,
-  right
+  right,
 }
 
-const List<Direction> correctPath = [
+const List<Direction> mazePath = [
   Direction.up,
-  Direction.right,
-  Direction.right,
+  Direction.left,
   Direction.down,
   Direction.left,
   Direction.up,
-  Direction.left,
+  Direction.up,
+  Direction.right,
+  Direction.up,
+  Direction.right,
+  Direction.right,
+  Direction.up,
 ];

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hero_game/app/common/constants/colors.dart';
 import 'package:hero_game/app/common/constants/dimensions.dart';
 import 'package:hero_game/app/common/constants/direction.dart';
-import 'package:hero_game/core/extensions/direction_icon.dart';
+import 'package:hero_game/app/common/constants/direction_icon.dart';
 import 'package:hero_game/app/common/widgets/custom_container.dart';
 import 'package:hero_game/app/presentation/models/custom_container_model.dart';
 
@@ -24,15 +24,16 @@ class DirectionButton extends StatelessWidget {
       opacity: onPressed != null
           ? AppDimensions.directionButtonEnabledOpacity
           : AppDimensions.directionButtonDisabledOpacity,
-      child: CustomContainer(
-        model: CustomContainerModel(
-          width: size,
-          height: size,
-          color: AppColor.lightBlue,
-          borderRadius: AppDimensions.directionButtonBorderRadius,
-        ),
-        child: GestureDetector(
-          onTap: onPressed,
+      child: GestureDetector(
+        onTap: onPressed,
+        behavior: HitTestBehavior.opaque,
+        child: CustomContainer(
+          model: CustomContainerModel(
+            width: size,
+            height: size,
+            color: AppColor.lightBlue,
+            borderRadius: AppDimensions.directionButtonBorderRadius,
+          ),
           child: Center(
             child: Icon(
               direction.icon,

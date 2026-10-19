@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../app/common/constants/direction.dart';
+import 'direction.dart';
 
 extension DirIcon on Direction {
   IconData get icon {
@@ -15,7 +15,3 @@ extension DirIcon on Direction {
     }
   }
 }
-
-//Extension, zaten var olan bir sınıfa 
-//(veya enum’a) onun kodunu değiştirmeden 
-//yeni özellik veya fonksiyon eklemek için yazılır.

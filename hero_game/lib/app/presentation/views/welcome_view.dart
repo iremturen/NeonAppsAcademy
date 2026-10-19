@@ -24,7 +24,7 @@ class WelcomeView extends StatelessWidget {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          const CustomBackground(),
+          const Hero(tag: CustomBackground.heroTag, child: CustomBackground()),
           SafeArea(
             child: Padding(
               padding: const EdgeInsets.all(AppDimensions.spacingLarge),

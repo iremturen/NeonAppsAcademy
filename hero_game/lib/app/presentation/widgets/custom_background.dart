@@ -4,6 +4,8 @@ import 'package:hero_game/app/common/widgets/custom_image.dart';
 import 'package:hero_game/app/presentation/models/custom_image_model.dart';
 
 class CustomBackground extends StatelessWidget {
+  static const String heroTag = 'maze-background';
+
   const CustomBackground({super.key});
 
   @override
