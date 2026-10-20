@@ -1,0 +1,40 @@
+PODS:
+  - Adapty (2.10.3)
+  - adapty_flutter (2.10.3):
+    - Adapty (= 2.10.3)
+    - Flutter
+  - adapty_ui_flutter (2.1.3):
+    - AdaptyUI (~> 2.1.3)
+    - Flutter
+  - AdaptyUI (2.1.5):
+    - Adapty (~> 2.10.2)
+  - Flutter (1.0.0)
+
+DEPENDENCIES:
+  - adapty_flutter (from `.symlinks/plugins/adapty_flutter/ios`)
+  - adapty_ui_flutter (from `.symlinks/plugins/adapty_ui_flutter/ios`)
+  - Flutter (from `Flutter`)
+
+SPEC REPOS:
+  trunk:
+    - Adapty
+    - AdaptyUI
+
+EXTERNAL SOURCES:
+  adapty_flutter:
+    :path: ".symlinks/plugins/adapty_flutter/ios"
+  adapty_ui_flutter:
+    :path: ".symlinks/plugins/adapty_ui_flutter/ios"
+  Flutter:
+    :path: Flutter
+
+SPEC CHECKSUMS:
+  Adapty: adb16d30139d66297c70190f22b3e9a169e5130f
+  adapty_flutter: 2ac61a29d3913b7b3bb8186d3a854172afd6857c
+  adapty_ui_flutter: 5d4f83e1154649148e072de891a43131e3629080
+  AdaptyUI: 2e63fae4d5e1bbf89ec79743d6b0f03f8990f532
+  Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
+
+PODFILE CHECKSUM: 3c63482e143d1b91d2d2560aee9fb04ecc74ac7e
+
+COCOAPODS: 1.16.2
