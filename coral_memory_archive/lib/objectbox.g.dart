@@ -14,7 +14,7 @@ import 'package:objectbox/internal.dart'
 import 'package:objectbox/objectbox.dart' as obx;
 import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
-import 'data/models/coral_memory_fragment.dart';
+import 'app/data/models/coral_memory_fragment.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
 
@@ -22,7 +22,7 @@ final _entities = <obx_int.ModelEntity>[
   obx_int.ModelEntity(
     id: const obx_int.IdUid(1, 3497097480685400390),
     name: 'CoralMemoryFragment',
-    lastPropertyId: const obx_int.IdUid(7, 4638826170185560082),
+    lastPropertyId: const obx_int.IdUid(8, 6578256380882252195),
     flags: 0,
     properties: <obx_int.ModelProperty>[
       obx_int.ModelProperty(
@@ -35,25 +35,29 @@ final _entities = <obx_int.ModelEntity>[
         id: const obx_int.IdUid(2, 7714000340247743809),
         name: 'title',
         type: 9,
-        flags: 0,
+        flags: 2048,
+        indexId: const obx_int.IdUid(1, 2596195207196909589),
       ),
       obx_int.ModelProperty(
         id: const obx_int.IdUid(3, 5668807348167368297),
         name: 'species',
         type: 9,
-        flags: 0,
+        flags: 2048,
+        indexId: const obx_int.IdUid(2, 9122082615595669882),
       ),
       obx_int.ModelProperty(
         id: const obx_int.IdUid(4, 2978120346660979201),
         name: 'category',
         type: 9,
-        flags: 0,
+        flags: 2048,
+        indexId: const obx_int.IdUid(3, 3322729046482725409),
       ),
       obx_int.ModelProperty(
         id: const obx_int.IdUid(5, 6939218003734112161),
         name: 'discoveredAt',
         type: 10,
-        flags: 0,
+        flags: 8,
+        indexId: const obx_int.IdUid(4, 7683410476518658387),
       ),
       obx_int.ModelProperty(
         id: const obx_int.IdUid(6, 7674885237007479241),
@@ -64,6 +68,12 @@ final _entities = <obx_int.ModelEntity>[
       obx_int.ModelProperty(
         id: const obx_int.IdUid(7, 4638826170185560082),
         name: 'description',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(8, 6578256380882252195),
+        name: 'imageUrl',
         type: 9,
         flags: 0,
       ),
@@ -117,7 +127,7 @@ obx_int.ModelDefinition getObjectBoxModel() {
     generatorVersion: obx_int.GeneratorVersion.v2025_12_16,
     entities: _entities,
     lastEntityId: const obx_int.IdUid(1, 3497097480685400390),
-    lastIndexId: const obx_int.IdUid(0, 0),
+    lastIndexId: const obx_int.IdUid(4, 7683410476518658387),
     lastRelationId: const obx_int.IdUid(0, 0),
     lastSequenceId: const obx_int.IdUid(0, 0),
     retiredEntityUids: const [],
@@ -144,7 +154,8 @@ obx_int.ModelDefinition getObjectBoxModel() {
         final categoryOffset = fbb.writeString(object.category);
         final locationOffset = fbb.writeString(object.location);
         final descriptionOffset = fbb.writeString(object.description);
-        fbb.startTable(8);
+        final imageUrlOffset = fbb.writeString(object.imageUrl);
+        fbb.startTable(9);
         fbb.addInt64(0, object.id);
         fbb.addOffset(1, titleOffset);
         fbb.addOffset(2, speciesOffset);
@@ -152,6 +163,7 @@ obx_int.ModelDefinition getObjectBoxModel() {
         fbb.addInt64(4, object.discoveredAt.millisecondsSinceEpoch);
         fbb.addOffset(5, locationOffset);
         fbb.addOffset(6, descriptionOffset);
+        fbb.addOffset(7, imageUrlOffset);
         fbb.finish(fbb.endTable());
         return object.id;
       },
@@ -173,6 +185,9 @@ obx_int.ModelDefinition getObjectBoxModel() {
         final categoryParam = const fb.StringReader(
           asciiOptimization: true,
         ).vTableGet(buffer, rootOffset, 10, '');
+        final imageUrlParam = const fb.StringReader(
+          asciiOptimization: true,
+        ).vTableGet(buffer, rootOffset, 18, '');
         final discoveredAtParam = DateTime.fromMillisecondsSinceEpoch(
           const fb.Int64Reader().vTableGet(buffer, rootOffset, 12, 0),
         );
@@ -187,6 +202,7 @@ obx_int.ModelDefinition getObjectBoxModel() {
           title: titleParam,
           species: speciesParam,
           category: categoryParam,
+          imageUrl: imageUrlParam,
           discoveredAt: discoveredAtParam,
           location: locationParam,
           description: descriptionParam,
@@ -235,5 +251,10 @@ class CoralMemoryFragment_ {
   /// See [CoralMemoryFragment.description].
   static final description = obx.QueryStringProperty<CoralMemoryFragment>(
     _entities[0].properties[6],
+  );
+
+  /// See [CoralMemoryFragment.imageUrl].
+  static final imageUrl = obx.QueryStringProperty<CoralMemoryFragment>(
+    _entities[0].properties[7],
   );
 }

@@ -5,7 +5,7 @@
   "entities": [
     {
       "id": "1:3497097480685400390",
-      "lastPropertyId": "7:4638826170185560082",
+      "lastPropertyId": "8:6578256380882252195",
       "name": "CoralMemoryFragment",
       "properties": [
         {
@@ -17,22 +17,30 @@
         {
           "id": "2:7714000340247743809",
           "name": "title",
-          "type": 9
+          "indexId": "1:2596195207196909589",
+          "type": 9,
+          "flags": 2048
         },
         {
           "id": "3:5668807348167368297",
           "name": "species",
-          "type": 9
+          "indexId": "2:9122082615595669882",
+          "type": 9,
+          "flags": 2048
         },
         {
           "id": "4:2978120346660979201",
           "name": "category",
-          "type": 9
+          "indexId": "3:3322729046482725409",
+          "type": 9,
+          "flags": 2048
         },
         {
           "id": "5:6939218003734112161",
           "name": "discoveredAt",
-          "type": 10
+          "indexId": "4:7683410476518658387",
+          "type": 10,
+          "flags": 8
         },
         {
           "id": "6:7674885237007479241",
@@ -43,13 +51,18 @@
           "id": "7:4638826170185560082",
           "name": "description",
           "type": 9
+        },
+        {
+          "id": "8:6578256380882252195",
+          "name": "imageUrl",
+          "type": 9
         }
       ],
       "relations": []
     }
   ],
   "lastEntityId": "1:3497097480685400390",
-  "lastIndexId": "0:0",
+  "lastIndexId": "4:7683410476518658387",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
   "modelVersion": 5,

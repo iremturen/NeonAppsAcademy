@@ -1,30 +1,41 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
-import 'package:flutter/material.dart';
+import 'dart:io';
+import 'package:coral_memory_archive/app/app.dart';
+import 'package:coral_memory_archive/app/common/constants/app_string.dart';
+import 'package:coral_memory_archive/app/common/di/injection.dart';
+import 'package:coral_memory_archive/app/data/datasources/local/objectbox_database.dart';
+import 'package:coral_memory_archive/objectbox.g.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:coral_memory_archive/main.dart';
-
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  late Directory tempDir;
+  late Store store;
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+  setUp(() {
+    tempDir = Directory.systemTemp.createTempSync('aqualis_widget_test_');
+    store = Store(getObjectBoxModel(), directory: tempDir.path);
+  });
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+  tearDown(() {
+    store.close();
+    if (tempDir.existsSync()) {
+      tempDir.deleteSync(recursive: true);
+    }
+  });
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+  testWidgets('Aqualis Coral Archive smoke test', (WidgetTester tester) async {
+    final database = ObjectBoxDatabase(store);
+    final injection = Injection(database);
+
+    await tester.pumpWidget(CoralMemoryApp(injection: injection));
+    await tester.pumpAndSettle();
+
+    // Verify AppBar title is displayed
+    expect(find.text(AppStrings.appTitle), findsOneWidget);
+
+    // Verify search bar is displayed
+    expect(find.text(AppStrings.searchMemoriesHint), findsOneWidget);
+
+    // Verify empty archive state message
+    expect(find.textContaining('No memories yet'), findsOneWidget);
   });
 }

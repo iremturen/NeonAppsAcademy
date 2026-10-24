@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:coral_memory_archive/app.dart';
-import 'package:coral_memory_archive/common/di/injection.dart';
+import 'package:coral_memory_archive/app/app.dart';
+import 'package:coral_memory_archive/app/common/di/injection.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
